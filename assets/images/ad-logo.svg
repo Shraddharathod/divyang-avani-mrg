@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Royal Crimson & Wine Gradient (No Gold) -->
+    <linearGradient id="royalCrimson" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9b1b30" />
+      <stop offset="50%" stop-color="#730e1e" />
+      <stop offset="100%" stop-color="#4a0510" />
+    </linearGradient>
+
+    <linearGradient id="roseAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b83248" />
+      <stop offset="100%" stop-color="#6e101f" />
+    </linearGradient>
+  </defs>
+
+  <!-- Circular Outer Frame with Regal Geometry -->
+  <circle cx="250" cy="250" r="225" fill="none" stroke="url(#royalCrimson)" stroke-width="2" stroke-dasharray="4,6" opacity="0.6"/>
+  <circle cx="250" cy="250" r="215" fill="none" stroke="url(#royalCrimson)" stroke-width="3" />
+  <circle cx="250" cy="250" r="205" fill="none" stroke="url(#royalCrimson)" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- Ornate Cardinal Dots -->
+  <g fill="url(#royalCrimson)">
+    <circle cx="250" cy="35" r="5"/>
+    <circle cx="250" cy="465" r="5"/>
+    <circle cx="35" cy="250" r="5"/>
+    <circle cx="465" cy="250" r="5"/>
+    <circle cx="98" cy="98" r="4"/>
+    <circle cx="402" cy="98" r="4"/>
+    <circle cx="98" cy="402" r="4"/>
+    <circle cx="402" cy="402" r="4"/>
+  </g>
+
+  <!-- Symmetrical Floral Wreath Branches -->
+  <g stroke="url(#royalCrimson)" stroke-width="2.2" fill="none" stroke-linecap="round">
+    <!-- Left Branch -->
+    <path d="M85,250 C80,165 130,95 210,75" />
+    <path d="M85,250 C80,335 130,405 210,425" />
+    <!-- Right Branch -->
+    <path d="M415,250 C420,165 370,95 290,75" />
+    <path d="M415,250 C420,335 370,405 290,425" />
+
+    <!-- Leaves Left -->
+    <path d="M96,210 C86,204 82,192 86,182 C92,187 97,198 98,206" fill="url(#royalCrimson)"/>
+    <path d="M115,160 C106,154 104,142 110,132 C116,138 119,148 118,157" fill="url(#royalCrimson)"/>
+    <path d="M148,118 C140,111 140,99 148,90 C154,97 155,108 152,116" fill="url(#royalCrimson)"/>
+    <path d="M96,290 C86,296 82,308 86,318 C92,313 97,302 98,294" fill="url(#royalCrimson)"/>
+    <path d="M115,340 C106,346 104,358 110,368 C116,362 119,352 118,343" fill="url(#royalCrimson)"/>
+    <path d="M148,382 C140,389 140,401 148,410 C154,403 155,392 152,384" fill="url(#royalCrimson)"/>
+
+    <!-- Leaves Right -->
+    <path d="M404,210 C414,204 418,192 414,182 C408,187 403,198 402,206" fill="url(#royalCrimson)"/>
+    <path d="M385,160 C394,154 396,142 390,132 C384,138 381,148 382,157" fill="url(#royalCrimson)"/>
+    <path d="M352,118 C360,111 360,99 352,90 C346,97 345,108 348,116" fill="url(#royalCrimson)"/>
+    <path d="M404,290 C414,296 418,308 414,318 C408,313 403,302 402,294" fill="url(#royalCrimson)"/>
+    <path d="M385,340 C394,346 396,358 390,368 C384,362 381,352 382,343" fill="url(#royalCrimson)"/>
+    <path d="M352,382 C360,389 360,401 352,410 C346,403 345,392 348,384" fill="url(#royalCrimson)"/>
+  </g>
+
+  <!-- Crown / Crest Finial at Top -->
+  <g transform="translate(250, 68)" fill="url(#royalCrimson)">
+    <circle cx="0" cy="-18" r="5"/>
+    <path d="M0,-12 L6,-2 L-6,-2 Z"/>
+    <path d="M-30,14 L-22,-4 L-10,8 L0,-10 L10,8 L22,-4 L30,14 Z"/>
+    <rect x="-28" y="16" width="56" height="4" rx="2"/>
+  </g>
+
+  <!-- ==============================================
+       CENTRAL MONOGRAM "A & D" (CLEAR, CRISP, VISIBLE)
+       ============================================== -->
+  <!-- Letter 'A' (Avani) -->
+  <path d="M165,335 C178,335 186,325 198,295 L248,155 Q252,142 258,155 L308,295 C320,325 328,335 342,335" 
+        fill="none" stroke="url(#royalCrimson)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Crossbar loop of A -->
+  <path d="M185,268 L320,268" 
+        fill="none" stroke="url(#royalCrimson)" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- Letter 'D' (Divyang) -->
+  <!-- Straight vertical back spine of D -->
+  <path d="M228,155 L228,335" 
+        fill="none" stroke="url(#royalCrimson)" stroke-width="11" stroke-linecap="round"/>
+  <!-- Serifs on spine -->
+  <path d="M214,155 L242,155 M214,335 L242,335" 
+        fill="none" stroke="url(#royalCrimson)" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Grand curved loop of D -->
+  <path d="M228,162 C295,162 360,195 360,248 C360,302 295,328 228,328" 
+        fill="none" stroke="url(#royalCrimson)" stroke-width="12" stroke-linecap="round"/>
+
+  <!-- Ampersand & in center -->
+  <text x="252" y="260" font-family="'Cormorant Garamond', serif" font-size="38" font-style="italic" font-weight="bold"
+        text-anchor="middle" fill="url(#roseAccent)">&amp;</text>
+
+  <!-- Bottom Lotus Blossom Flourish -->
+  <g transform="translate(250, 412)" fill="url(#royalCrimson)">
+    <path d="M0,-8 C-14,-22 -28,-14 -32,0 C-20,6 -8,0 0,10 C8,0 20,6 32,0 C28,-14 14,-22 0,-8 Z" />
+    <circle cx="0" cy="14" r="3.5"/>
+  </g>
+
+  <!-- Typography Below Crest -->
+  <text x="250" y="452" font-family="'Cormorant Garamond', serif" font-size="22" font-weight="700" letter-spacing="7" 
+        text-anchor="middle" fill="url(#royalCrimson)">AVANI &amp; DIVYANG</text>
+  <text x="250" y="475" font-family="'Montserrat', sans-serif" font-size="10.5" font-weight="600" letter-spacing="4" 
+        text-anchor="middle" fill="url(#royalCrimson)" opacity="0.85">17 • 01 • 2027</text>
+</svg>

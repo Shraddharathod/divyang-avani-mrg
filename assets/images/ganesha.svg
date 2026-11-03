@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 260" width="100%" height="100%">
+  <defs>
+    <!-- Auspicious Sindoori Vermilion & Deep Red (Traditional Wedding Color) -->
+    <linearGradient id="ganeshRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dc2626" />
+      <stop offset="50%" stop-color="#b91c1c" />
+      <stop offset="100%" stop-color="#7f1d1d" />
+    </linearGradient>
+  </defs>
+
+  <!-- Sacred Radiance Rings -->
+  <circle cx="120" cy="120" r="105" fill="none" stroke="url(#ganeshRed)" stroke-width="1.5" stroke-dasharray="3, 4" opacity="0.6"/>
+  <circle cx="120" cy="120" r="96" fill="none" stroke="url(#ganeshRed)" stroke-width="2.5" />
+
+  <!-- Classical Lord Ganesha Traditional Silhouette (High Contrast, Proper & Sacred) -->
+  <g fill="none" stroke="url(#ganeshRed)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    
+    <!-- Crown / Mukut Top Kalash -->
+    <path d="M120,20 L120,36" stroke-width="4"/>
+    <circle cx="120" cy="16" r="4" fill="url(#ganeshRed)" stroke="none"/>
+    <!-- Crown Body -->
+    <path d="M96,44 C104,32 136,32 144,44 C136,50 104,50 96,44 Z" fill="url(#ganeshRed)" fill-opacity="0.15"/>
+    <line x1="102" y1="44" x2="138" y2="44" stroke-width="2"/>
+
+    <!-- Sacred Tilak / Trishul on Forehead -->
+    <path d="M116,54 C118,65 122,65 124,54" stroke="#ea580c" stroke-width="3"/>
+    <circle cx="120" cy="62" r="3.2" fill="#b91c1c" stroke="none"/>
+
+    <!-- Large Auspicious Ears (Supda-karn) -->
+    <!-- Left Ear -->
+    <path d="M92,60 C64,62 56,92 72,114 C84,124 94,116 98,104" stroke-width="3.8"/>
+    <path d="M82,78 C72,86 70,100 80,108" stroke-width="2" opacity="0.7"/>
+
+    <!-- Right Ear -->
+    <path d="M148,60 C176,62 184,92 168,114 C156,124 146,116 142,104" stroke-width="3.8"/>
+    <path d="M158,78 C168,86 170,100 160,108" stroke-width="2" opacity="0.7"/>
+
+    <!-- Forehead Ridge & Eyes -->
+    <path d="M94,66 C108,58 132,58 146,66" stroke-width="3.2"/>
+    <!-- Eye curves -->
+    <path d="M102,74 Q108,71 114,75" stroke-width="2"/>
+    <path d="M126,75 Q132,71 138,74" stroke-width="2"/>
+
+    <!-- Divine Trunk (Sondh) Sweeping Gracefully with Modak -->
+    <path d="M116,74 C116,98 120,126 108,146 C96,164 80,168 74,156 C68,144 80,132 94,132 C104,132 108,118 108,94" stroke-width="4.2"/>
+
+    <!-- Sacred Modak / Laddu in hand/trunk tip -->
+    <g transform="translate(72, 152)">
+      <circle cx="0" cy="0" r="7" fill="#f59e0b" stroke="url(#ganeshRed)" stroke-width="2"/>
+      <circle cx="-1.5" cy="-2" r="2.5" fill="#fef08a" stroke="none"/>
+    </g>
+
+    <!-- Right Tusk (Ekdant) -->
+    <path d="M138,100 L152,106" stroke="#ffffff" stroke-width="4" stroke-linecap="square"/>
+    <path d="M138,100 L152,106" stroke="url(#ganeshRed)" stroke-width="1.2" stroke-linecap="square"/>
+
+    <!-- Blessing Hand (Abhaya Mudra) with Sacred Swastik -->
+    <path d="M152,118 C166,122 178,138 170,158 C162,166 148,162 142,150" stroke-width="3.5"/>
+    <g transform="translate(158, 140) scale(0.8)">
+      <text x="0" y="0" font-family="sans-serif" font-size="16" font-weight="bold" fill="#b91c1c" stroke="none" text-anchor="middle">卐</text>
+    </g>
+
+    <!-- Base Seated Body (Om shape) -->
+    <path d="M92,172 C106,190 134,190 148,172" stroke-width="3.5"/>
+  </g>
+
+  <!-- Sacred Lotus Base Pedestal -->
+  <g transform="translate(120, 206)" fill="url(#ganeshRed)">
+    <path d="M0,-8 C-14,-20 -28,-14 -32,0 C-20,5 -8,0 0,8 C8,0 20,5 32,0 C28,-14 14,-20 0,-8 Z" />
+    <path d="M-40,2 C-30,12 -14,10 0,12 C14,10 30,12 40,2 C30,0 18,3 0,3 C-18,3 -30,0 -40,2 Z" opacity="0.85"/>
+  </g>
+
+  <!-- Auspicious Devanagari / Gujarati Inscription -->
+  <text x="120" y="240" font-family="'Noto Serif Gujarati', 'Cormorant Garamond', serif" font-size="15" font-weight="700" 
+        text-anchor="middle" fill="url(#ganeshRed)" letter-spacing="2">॥ શ્રી ગણેશાય નમઃ ॥</text>
+</svg>

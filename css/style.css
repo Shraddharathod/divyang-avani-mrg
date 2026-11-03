@@ -1,0 +1,1631 @@
+/* ==========================================================================
+   ROYAL WEDDING INVITATION LUXURY STYLESHEET (V2 - ENHANCED THEME & FONTS)
+   Avani Makwana & Divyang Rathod | 17th January 2027
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&family=Noto+Sans+Gujarati:wght@300;400;500;600;700&family=Noto+Serif+Gujarati:wght@400;600;700;900&display=swap');
+
+:root {
+  /* Modern Luxury Pastel Wedding Palette */
+  --pastel-rose: #d89fa3;
+  --pastel-rose-light: #fdf2f2;
+  --pastel-rose-deep: #8a3f48;
+  
+  --pastel-sage: #9bb7a3;
+  --pastel-sage-light: #edf4ee;
+  --pastel-sage-deep: #47634f;
+  
+  --pastel-peach: #f5cfb8;
+  --pastel-champagne: #caa87a;
+  --pastel-gradient: linear-gradient(135deg, #d89fa3 0%, #f5cfb8 50%, #caa87a 100%);
+  
+  --gold-primary: #bfa075;
+  --gold-light: #faecd6;
+  --gold-dark: #8c6434;
+  --gold-gradient: linear-gradient(135deg, #d8b88a 0%, #faecd6 45%, #bfa075 75%, #8c6434 100%);
+  
+  --royal-wine: #8a3f48;
+  --royal-wine-light: #a85860;
+  --royal-wine-dark: #582027;
+  
+  /* Modern Cashmere & Soft Almond Pastel Ivory */
+  --bg-primary: #faf6f2;
+  --bg-secondary: #f4ece4;
+  --bg-card: rgba(255, 255, 255, 0.92);
+  
+  --text-main: #362927;
+  --text-muted: #786461;
+  --text-gold: #966736;
+  
+  --card-border: rgba(216, 159, 163, 0.4);
+  --card-shadow: 0 16px 36px rgba(138, 63, 72, 0.07);
+  --header-bg: rgba(250, 246, 242, 0.95);
+
+  --font-serif: 'Cormorant Garamond', 'Noto Serif Gujarati', serif;
+  --font-script: 'Alex Brush', cursive;
+  --font-royal: 'Cinzel', serif;
+  --font-sans: 'Montserrat', 'Noto Sans Gujarati', sans-serif;
+  --font-gujarati: 'Noto Serif Gujarati', serif;
+}
+
+/* Midnight Royal Emerald & Starlight Gold (Dark Mode) */
+body.dark-mode {
+  --bg-primary: #151316;
+  --bg-secondary: #1c181e;
+  --bg-card: rgba(28, 24, 30, 0.9);
+  
+  --text-main: #f5ede8;
+  --text-muted: #bdaea9;
+  --text-gold: #f2d8bf;
+  
+  --card-border: rgba(216, 159, 163, 0.35);
+  --card-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+  --header-bg: rgba(21, 19, 22, 0.95);
+  
+  --royal-wine: #d89fa3;
+  --royal-wine-light: #e8b4b8;
+}
+
+/* Reset & Base Setup */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  position: relative;
+}
+
+/* Subtle Royal Damask Watermark */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(197, 146, 44, 0.05) 0%, transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(92, 17, 30, 0.05) 0%, transparent 45%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   NAVIGATION BAR (FLOATING LUXURY HEADER)
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--header-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--card-border);
+  box-shadow: 0 4px 25px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.nav-container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-monogram {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--royal-wine);
+  font-family: var(--font-royal);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+body.dark-mode .nav-monogram {
+  color: var(--gold-light);
+}
+
+.nav-monogram-icon {
+  width: 36px;
+  height: 36px;
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Language Switcher Group */
+.lang-switcher-group {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(197, 146, 44, 0.12);
+  border: 1px solid var(--card-border);
+  border-radius: 25px;
+  padding: 3px;
+  gap: 3px;
+}
+
+.lang-link-btn {
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: var(--text-main);
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.lang-link-btn:hover {
+  background: rgba(197, 146, 44, 0.2);
+  color: var(--text-gold);
+}
+
+.lang-link-btn.active {
+  background: var(--gold-gradient);
+  color: #382405;
+  box-shadow: 0 2px 8px rgba(197, 146, 44, 0.35);
+  font-weight: 700;
+}
+
+/* Theme Toggle Button */
+.theme-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--card-border);
+  background: var(--bg-card);
+  color: var(--text-main);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.theme-btn:hover {
+  transform: scale(1.1);
+  border-color: var(--gold-primary);
+  color: var(--gold-primary);
+}
+
+/* Floating Audio Toggle (Bottom Right) */
+.audio-toggle-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pastel-rose), var(--royal-wine));
+  border: 2px solid var(--pastel-champagne);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(138, 63, 72, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.audio-toggle-float:hover {
+  transform: scale(1.12);
+  box-shadow: 0 10px 30px rgba(197, 146, 44, 0.6);
+}
+
+.audio-waves {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 18px;
+}
+
+.audio-wave-bar {
+  width: 3px;
+  height: 100%;
+  background: #fff;
+  border-radius: 2px;
+  animation: waveBar 1.2s infinite ease-in-out;
+}
+
+.audio-toggle-float.paused .audio-wave-bar {
+  animation-play-state: paused;
+  height: 4px;
+}
+
+.audio-wave-bar:nth-child(1) { animation-delay: 0.1s; height: 60%; }
+.audio-wave-bar:nth-child(2) { animation-delay: 0.3s; height: 100%; }
+.audio-wave-bar:nth-child(3) { animation-delay: 0.2s; height: 80%; }
+.audio-wave-bar:nth-child(4) { animation-delay: 0.4s; height: 40%; }
+
+@keyframes waveBar {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+
+/* ==========================================================================
+   HERO & AUSPICIOUS INVOCATION SECTION
+   ========================================================================== */
+.hero-section {
+  padding-top: 105px;
+  padding-bottom: 50px;
+  text-align: center;
+  position: relative;
+}
+
+.shree-ganesh-block {
+  margin-bottom: 25px;
+  animation: fadeInDown 1s ease-out;
+}
+
+.ganesh-symbol {
+  width: 82px;
+  height: 90px;
+  margin: 0 auto 12px;
+  filter: drop-shadow(0 6px 14px rgba(197, 146, 44, 0.35));
+}
+
+.shree-ganesh-text {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--royal-wine);
+  text-transform: uppercase;
+}
+
+body.dark-mode .shree-ganesh-text {
+  color: var(--gold-light);
+}
+
+.shree-shlok {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-top: 5px;
+  font-style: italic;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Custom AD Monogram Presentation */
+.ad-crest-wrapper {
+  margin: 22px auto;
+  width: 180px;
+  height: 180px;
+  position: relative;
+  cursor: pointer;
+  animation: zoomGlow 1.2s ease-out;
+}
+
+@keyframes zoomGlow {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.ad-crest-img {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 8px 24px rgba(197, 146, 44, 0.38));
+  transition: transform 0.5s ease;
+}
+
+.ad-crest-wrapper:hover .ad-crest-img {
+  transform: scale(1.05) rotate(1.5deg);
+}
+
+/* Couple Names & Grand Title */
+.wedding-invite-heading {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.couple-names-grand {
+  font-family: var(--font-script);
+  font-size: 82px;
+  color: var(--royal-wine);
+  line-height: 1.1;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 12px rgba(92, 17, 30, 0.12);
+}
+
+body.dark-mode .couple-names-grand {
+  color: var(--gold-light);
+  text-shadow: 0 0 25px rgba(253, 240, 166, 0.35);
+}
+
+.couple-full-names {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: var(--text-main);
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+
+.couple-full-names span {
+  color: var(--gold-primary);
+  font-style: italic;
+  font-family: var(--font-serif);
+  text-transform: lowercase;
+  margin: 0 10px;
+}
+
+body.dark-mode .couple-full-names span {
+  color: var(--gold-light);
+}
+
+.wedding-main-date-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--gold-primary);
+  border-radius: 40px;
+  padding: 10px 30px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+  margin-bottom: 35px;
+}
+
+.wedding-main-date-badge .date-day {
+  font-family: var(--font-royal);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--royal-wine);
+}
+
+body.dark-mode .wedding-main-date-badge .date-day {
+  color: var(--gold-light);
+}
+
+.wedding-main-date-badge .date-divider {
+  width: 1.5px;
+  height: 28px;
+  background: var(--gold-primary);
+}
+
+.wedding-main-date-badge .date-details {
+  text-align: left;
+  line-height: 1.25;
+}
+
+.wedding-main-date-badge .date-month-year {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: 1.5px;
+}
+
+.wedding-main-date-badge .date-city {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* Hero Portrait Card Showcase */
+.hero-portrait-card {
+  max-width: 520px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  border-radius: 22px;
+  padding: 14px;
+  box-shadow: var(--card-shadow), 0 0 0 1px var(--card-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-portrait-img-box {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+}
+
+.hero-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  transition: transform 0.8s ease;
+}
+
+.hero-portrait-card:hover .hero-portrait-img {
+  transform: scale(1.04);
+}
+
+.hero-portrait-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(58, 8, 18, 0.88) 0%, rgba(58, 8, 18, 0.1) 50%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+  color: #fff;
+  text-align: center;
+}
+
+.hero-tagline {
+  font-family: var(--font-script);
+  font-size: 38px;
+  color: #fef0a6;
+  margin-bottom: 4px;
+}
+
+.hero-subtag {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #fce7f3;
+}
+
+/* Scroll to explore hint */
+.scroll-hint {
+  margin-top: 25px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  animation: bounceHint 2s infinite ease-in-out;
+}
+
+@keyframes bounceHint {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* ==========================================================================
+   SIDE SELECTOR TABS (GROOM SIDE VS BRIDE SIDE)
+   ========================================================================== */
+.side-selector-container {
+  display: flex;
+  justify-content: center;
+  margin: 40px auto 20px;
+}
+
+.side-toggle-pill {
+  background: var(--bg-card);
+  border: 1.5px solid var(--card-border);
+  border-radius: 40px;
+  padding: 5px;
+  display: inline-flex;
+  gap: 6px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+}
+
+.side-btn {
+  border: none;
+  background: transparent;
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.side-btn.active {
+  background: linear-gradient(135deg, var(--royal-wine), var(--royal-wine-dark));
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(92, 17, 30, 0.35);
+}
+
+body.dark-mode .side-btn.active {
+  background: var(--gold-gradient);
+  color: #261601;
+  box-shadow: 0 4px 15px rgba(197, 146, 44, 0.4);
+}
+
+/* ==========================================================================
+   SECTION HEADERS & TITLES
+   ========================================================================== */
+.section-wrapper {
+  padding: 60px 0;
+  position: relative;
+}
+
+.section-header-box {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-mini-subtitle {
+  font-family: var(--font-royal);
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 6px;
+}
+
+body.dark-mode .section-mini-subtitle {
+  color: var(--gold-light);
+}
+
+.section-main-title {
+  font-family: var(--font-serif);
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--royal-wine);
+  line-height: 1.2;
+}
+
+body.dark-mode .section-main-title {
+  color: #fefefe;
+}
+
+.section-divider-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 12px auto 0;
+}
+
+.section-divider-line {
+  width: 50px;
+  height: 1.5px;
+  background: var(--gold-primary);
+}
+
+.section-divider-icon {
+  color: var(--gold-primary);
+  font-size: 14px;
+}
+
+/* ==========================================================================
+   CEREMONY ITINERARY CAROUSEL & CARDS
+   ========================================================================== */
+.itinerary-carousel-container {
+  position: relative;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.carousel-nav-arrows {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.carousel-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold-primary);
+  background: var(--bg-card);
+  color: var(--text-main);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.carousel-btn:hover {
+  background: var(--gold-primary);
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.itinerary-track {
+  display: flex;
+  gap: 22px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 15px 5px 30px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.itinerary-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* 3D Ceremony Event Card */
+.event-card {
+  flex: 0 0 315px;
+  scroll-snap-align: start;
+  background: var(--bg-card);
+  border-radius: 20px;
+  padding: 26px 22px;
+  box-shadow: var(--card-shadow), 0 0 0 1px var(--card-border);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  overflow: hidden;
+}
+
+.event-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(92, 17, 30, 0.16), 0 0 0 1.5px var(--gold-primary);
+}
+
+/* Gold Corner Accents on Card */
+.event-card::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  border-top: 2px solid var(--gold-primary);
+  border-right: 2px solid var(--gold-primary);
+  border-top-right-radius: 10px;
+  opacity: 0.6;
+}
+
+.event-card::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  width: 24px;
+  height: 24px;
+  border-bottom: 2px solid var(--gold-primary);
+  border-left: 2px solid var(--gold-primary);
+  border-bottom-left-radius: 10px;
+  opacity: 0.6;
+}
+
+.event-num-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--gold-gradient);
+  color: #382405;
+  font-family: var(--font-royal);
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.event-icon-box {
+  width: 66px;
+  height: 66px;
+  margin: 0 auto 16px;
+  padding: 10px;
+  border-radius: 50%;
+  background: rgba(197, 146, 44, 0.12);
+  border: 1px dashed var(--gold-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-icon-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.event-title-main {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--royal-wine);
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+body.dark-mode .event-title-main {
+  color: var(--gold-light);
+}
+
+.event-title-sub {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: var(--text-gold);
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.event-info-list {
+  list-style: none;
+  border-top: 1px dashed var(--card-border);
+  border-bottom: 1px dashed var(--card-border);
+  padding: 14px 0;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.event-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-main);
+}
+
+.event-info-item svg {
+  width: 16px;
+  height: 16px;
+  color: var(--royal-wine);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+body.dark-mode .event-info-item svg {
+  color: var(--gold-primary);
+}
+
+.event-info-item strong {
+  color: var(--text-gold);
+  min-width: 65px;
+}
+
+.event-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 16px;
+  font-style: italic;
+  flex-grow: 1;
+  line-height: 1.5;
+}
+
+.event-location-pill {
+  background: rgba(197, 146, 44, 0.12);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: var(--text-main);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* ==========================================================================
+   VENUES & DIRECTIONS SECTION
+   ========================================================================== */
+.venues-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.venue-card {
+  background: var(--bg-card);
+  border-radius: 22px;
+  padding: 30px 26px;
+  box-shadow: var(--card-shadow), 0 0 0 1px var(--card-border);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.venue-card:hover {
+  transform: translateY(-5px);
+}
+
+.venue-side-badge {
+  align-self: flex-start;
+  background: linear-gradient(135deg, var(--royal-wine), var(--royal-wine-dark));
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+body.dark-mode .venue-side-badge {
+  background: var(--gold-gradient);
+  color: #261601;
+}
+
+.venue-name {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--royal-wine);
+  margin-bottom: 8px;
+}
+
+body.dark-mode .venue-name {
+  color: var(--gold-light);
+}
+
+.venue-address-line {
+  font-size: 14.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.venue-event-list {
+  background: rgba(0,0,0,0.03);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 22px;
+  font-size: 13px;
+  color: var(--text-main);
+  border-left: 3px solid var(--gold-primary);
+  line-height: 1.5;
+}
+
+.venue-actions {
+  margin-top: auto;
+  display: flex;
+  gap: 10px;
+}
+
+.venue-actions a {
+  flex: 1;
+  text-align: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   PHOTO GALLERY ("OUR BEAUTIFUL MOMENTS")
+   ========================================================================== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.gallery-item {
+  position: relative;
+  background: var(--bg-card);
+  border-radius: 18px;
+  padding: 12px;
+  box-shadow: var(--card-shadow), 0 0 0 1px var(--card-border);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2), 0 0 0 1.5px var(--gold-primary);
+}
+
+.gallery-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 330px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.gallery-item:hover .gallery-img {
+  transform: scale(1.08);
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(30, 8, 14, 0.88) 0%, transparent 60%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 18px;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+.gallery-caption-title {
+  font-family: var(--font-script);
+  font-size: 32px;
+  color: #fef0a6;
+  line-height: 1.1;
+}
+
+.gallery-caption-sub {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fce7f3;
+}
+
+/* Lightbox Modal */
+.lightbox-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: rgba(8, 4, 6, 0.96);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox-modal.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 75vh;
+  border-radius: 12px;
+  border: 2px solid var(--gold-primary);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+}
+
+.lightbox-caption {
+  color: #fef0a6;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -45px;
+  right: -10px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 34px;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   GUJARATI CULTURAL TAHUKO & TRADITIONS
+   ========================================================================== */
+.cultural-tahuko-box {
+  background: linear-gradient(135deg, rgba(197, 146, 44, 0.14), rgba(92, 17, 30, 0.12));
+  border: 1.5px dashed var(--gold-primary);
+  border-radius: 22px;
+  padding: 35px 25px;
+  margin: 50px auto 30px;
+  max-width: 780px;
+  text-align: center;
+  position: relative;
+}
+
+.tahuko-title {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--royal-wine);
+  margin-bottom: 14px;
+}
+
+body.dark-mode .tahuko-title {
+  color: var(--gold-light);
+}
+
+.tahuko-verse {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--text-main);
+  font-style: italic;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.site-footer {
+  text-align: center;
+  padding: 60px 20px 40px;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--card-border);
+  margin-top: 60px;
+}
+
+.footer-crest {
+  width: 95px;
+  height: 95px;
+  margin: 0 auto 16px;
+  opacity: 0.95;
+}
+
+.footer-couple-names {
+  font-family: var(--font-script);
+  font-size: 56px;
+  color: var(--royal-wine);
+  margin-bottom: 8px;
+}
+
+body.dark-mode .footer-couple-names {
+  color: var(--gold-light);
+}
+
+.footer-tag {
+  font-family: var(--font-royal);
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+
+.footer-copy {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--card-border);
+  padding-top: 20px;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   MOBILE & RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 768px) {
+  .hero-section {
+    padding-top: 95px;
+  }
+  .couple-names-grand {
+    font-size: 60px;
+  }
+  .couple-full-names {
+    font-size: 18px;
+    letter-spacing: 2.5px;
+  }
+  .hero-portrait-img-box {
+    height: 380px;
+  }
+  .section-main-title {
+    font-size: 32px;
+  }
+  .venues-grid {
+    grid-template-columns: 1fr;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  .gallery-img-wrapper {
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .couple-names-grand {
+    font-size: 48px;
+  }
+  .ad-crest-wrapper {
+    width: 150px;
+    height: 150px;
+  }
+  .wedding-main-date-badge {
+    padding: 8px 18px;
+  }
+  .event-card {
+    flex: 0 0 275px;
+    padding: 22px 18px;
+  }
+  .lang-switcher-group {
+    padding: 2px;
+  }
+  .lang-link-btn {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+}
+
+/* ==========================================================================
+   BLESSINGS & WELL WISHES SECTION (PURE LOVE & AUSPICIOUS PRAYERS)
+   ========================================================================== */
+.blessings-section {
+  padding: 90px 0 110px;
+  background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(92, 17, 30, 0.04) 50%, var(--bg-primary) 100%);
+  position: relative;
+}
+
+.blessings-container {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.blessings-intro-note {
+  max-width: 650px;
+  margin: 0 auto 35px;
+  font-family: var(--font-serif);
+  font-size: 19px;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.blessing-form-card {
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 15px 45px rgba(92, 17, 30, 0.08);
+  border-radius: 20px;
+  padding: 40px;
+  margin-bottom: 55px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+}
+
+.blessing-form-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gold-gradient);
+}
+
+.blessing-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-bottom: 20px;
+}
+
+.blessing-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.blessing-input-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.blessing-label {
+  font-family: var(--font-royal);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--royal-wine);
+}
+
+body.dark-mode .blessing-label {
+  color: var(--gold-light);
+}
+
+.blessing-input,
+.blessing-textarea {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1px solid rgba(197, 146, 44, 0.35);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+body.dark-mode .blessing-input,
+body.dark-mode .blessing-textarea {
+  background: rgba(18, 28, 25, 0.9);
+  border-color: rgba(229, 193, 88, 0.3);
+  color: var(--text-main);
+}
+
+.blessing-input:focus,
+.blessing-textarea:focus {
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 0 3px rgba(197, 146, 44, 0.2);
+}
+
+.blessing-textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.blessing-presets-wrapper {
+  margin: 15px 0 25px;
+}
+
+.blessing-presets-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.blessing-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.blessing-chip {
+  background: rgba(197, 146, 44, 0.08);
+  border: 1px solid rgba(197, 146, 44, 0.25);
+  padding: 7px 14px;
+  border-radius: 30px;
+  font-size: 13px;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  user-select: none;
+}
+
+.blessing-chip:hover {
+  background: var(--royal-wine);
+  color: #fff;
+  border-color: var(--royal-wine);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(92, 17, 30, 0.15);
+}
+
+.btn-send-blessing {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px 28px;
+  background: var(--gold-gradient);
+  color: #2b1807;
+  font-family: var(--font-royal);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(197, 146, 44, 0.35);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.btn-send-blessing:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(197, 146, 44, 0.45);
+}
+
+.btn-send-blessing:active {
+  transform: translateY(0);
+}
+
+.blessing-success-msg {
+  display: none;
+  margin-top: 25px;
+  padding: 18px 24px;
+  background: rgba(46, 125, 50, 0.1);
+  border: 1px solid rgba(46, 125, 50, 0.3);
+  border-radius: 12px;
+  text-align: center;
+  font-size: 15px;
+  color: #2e7d32;
+  animation: fadeIn 0.5s ease;
+}
+
+body.dark-mode .blessing-success-msg {
+  background: rgba(76, 175, 80, 0.15);
+  border-color: rgba(76, 175, 80, 0.4);
+  color: #81c784;
+}
+
+/* ==========================================================================
+   WALL OF BLESSINGS (LIVE CARDS & COUPLE CONTROLS)
+   ========================================================================== */
+.blessings-wall-wrapper {
+  margin-top: 40px;
+}
+
+.blessings-wall-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 25px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(197, 146, 44, 0.25);
+}
+
+.wall-heading-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wall-heading-title {
+  font-family: var(--font-royal);
+  font-size: 20px;
+  color: var(--royal-wine);
+}
+
+body.dark-mode .wall-heading-title {
+  color: var(--gold-light);
+}
+
+.wall-count-pill {
+  background: var(--royal-wine);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+/* Couple Host Control Bar (Excel, Copy, Live Feed) */
+.couple-controls-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-couple-tool {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 15px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: 1px solid rgba(197, 146, 44, 0.35);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text-main);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+body.dark-mode .btn-couple-tool {
+  background: rgba(22, 35, 31, 0.9);
+  color: #fff;
+}
+
+.btn-couple-tool:hover {
+  background: var(--royal-wine);
+  color: #fff;
+  border-color: var(--royal-wine);
+  transform: translateY(-2px);
+}
+
+.btn-couple-tool.btn-accent {
+  background: rgba(92, 17, 30, 0.08);
+  color: var(--royal-wine);
+  border-color: rgba(92, 17, 30, 0.25);
+}
+
+body.dark-mode .btn-couple-tool.btn-accent {
+  color: var(--gold-light);
+  border-color: rgba(229, 193, 88, 0.3);
+}
+
+/* Blessings Cards Container */
+.blessings-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.blessing-card {
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 8px 25px rgba(92, 17, 30, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+}
+
+.blessing-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(92, 17, 30, 0.09);
+  border-color: var(--gold-primary);
+}
+
+.blessing-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.blessing-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--royal-wine) 0%, #8b1e30 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: var(--font-royal);
+  box-shadow: 0 4px 10px rgba(92, 17, 30, 0.25);
+  flex-shrink: 0;
+}
+
+.blessing-meta {
+  flex: 1;
+}
+
+.blessing-sender-name {
+  font-family: var(--font-royal);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 3px;
+}
+
+.blessing-pills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.blessing-city-pill,
+.blessing-relation-pill {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: rgba(197, 146, 44, 0.1);
+  color: var(--text-muted);
+}
+
+.blessing-timestamp {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  flex-shrink: 0;
+}
+
+.blessing-card-body {
+  position: relative;
+  padding-left: 20px;
+}
+
+.blessing-quote-mark {
+  position: absolute;
+  left: 0;
+  top: -12px;
+  font-family: var(--font-serif);
+  font-size: 40px;
+  line-height: 1;
+  color: var(--gold-primary);
+  opacity: 0.4;
+}
+
+.blessing-quote-text {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-main);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .blessing-form-card {
+    padding: 25px 20px;
+  }
+  .blessing-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .blessings-wall-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .couple-controls-bar {
+    width: 100%;
+  }
+  .btn-couple-tool {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
+
+/* Language Visibility Toggling for Single-URL Mode */
+.lang-gu {
+  display: none !important;
+}
+.lang-en {
+  display: block;
+}
+span.lang-en, a.lang-en, strong.lang-en, em.lang-en {
+  display: inline;
+}
+
+body.lang-mode-gu .lang-en {
+  display: none !important;
+}
+body.lang-mode-gu .lang-gu {
+  display: block !important;
+}
+body.lang-mode-gu span.lang-gu,
+body.lang-mode-gu a.lang-gu,
+body.lang-mode-gu strong.lang-gu,
+body.lang-mode-gu em.lang-gu {
+  display: inline !important;
+}

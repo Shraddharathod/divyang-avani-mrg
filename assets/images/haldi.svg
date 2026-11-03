@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="haldiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFB703"/>
+      <stop offset="50%" stop-color="#FFE066"/>
+      <stop offset="100%" stop-color="#FB8500"/>
+    </linearGradient>
+  </defs>
+  <!-- Haldi Bowl -->
+  <path d="M25,50 C25,75 75,75 75,50 L25,50 Z" fill="#D4AF37" stroke="#AA771C" stroke-width="2"/>
+  <ellipse cx="50" cy="50" rx="25" ry="8" fill="url(#haldiGrad)"/>
+  <!-- Turmeric Paste Mound -->
+  <ellipse cx="50" cy="46" rx="18" ry="7" fill="#FFC300"/>
+  <ellipse cx="50" cy="43" rx="10" ry="4" fill="#FFE066"/>
+  <!-- Marigold Petals / Flowers -->
+  <circle cx="28" cy="74" r="7" fill="#FB8500"/>
+  <circle cx="28" cy="74" r="4" fill="#FFB703"/>
+  <circle cx="72" cy="74" r="7" fill="#FB8500"/>
+  <circle cx="72" cy="74" r="4" fill="#FFB703"/>
+  <circle cx="50" cy="80" r="8" fill="#F77F00"/>
+  <circle cx="50" cy="80" r="4" fill="#FFE066"/>
+  <!-- Turmeric Root -->
+  <path d="M68,35 C75,32 82,38 78,45 L72,42 Z" fill="#E85D04"/>
+</svg>

@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="bi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Avani & Divyang | Royal Wedding Invitation (English &amp; ગુજરાતી)</title>
+  <meta name="description" content="Wedding celebration of Avani Makwana & Divyang Rathod - 17th January 2027. અવની મકવાણા અને દિવ્યાંગ રાઠોડનો શુભ લગ્ન મહોત્સવ.">
+  <link rel="icon" type="image/svg+xml" href="assets/images/ad-logo.svg">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/envelope.css">
+  <link rel="stylesheet" href="css/scratch.css">
+</head>
+<body>
+
+  <!-- Audio Element -->
+  <audio id="wedding-audio" loop preload="auto">
+    <source src="assets/audio/wedding_music.m4a" type="audio/mp4">
+  </audio>
+
+  <!-- Floating Audio Controller (Bottom Right) -->
+  <button id="audio-toggle" class="audio-toggle-float paused" aria-label="Toggle background music" title="Wedding Shehnai & Melody">
+    <div class="audio-waves">
+      <span class="audio-wave-bar"></span>
+      <span class="audio-wave-bar"></span>
+      <span class="audio-wave-bar"></span>
+      <span class="audio-wave-bar"></span>
+    </div>
+  </button>
+
+  <!-- ======================================================================
+       3D ENVELOPE OPENING EXPERIENCE (MODAL OVERLAY)
+       ====================================================================== -->
+  <div id="envelope-modal" class="envelope-modal">
+    <div class="envelope-stars"></div>
+    
+    <div id="envelope-wrapper" class="envelope-wrapper">
+      <div class="envelope">
+        <div class="pocket-left"></div>
+        <div class="pocket-right"></div>
+        <div class="pocket-bottom"></div>
+        
+        <!-- Inside Card that glides up -->
+        <div class="card-slip">
+          <div class="slip-shree">॥ શ્રી ગણેશાય નમઃ ॥ • || Shree Ganeshay Namah ||</div>
+          <img src="assets/images/ad-logo.svg" alt="AD Monogram" class="slip-crest">
+          <div class="slip-names">Avani &amp; Divyang</div>
+          <div class="slip-fullnames">Avani Makwana &amp; Divyang Rathod<br><span style="font-size: 13px; font-weight: normal; color: #8c6014;">અવની મકવાણા સંગાથે દિવ્યાંગ રાઠોડ</span></div>
+          <div class="slip-date">17TH JANUARY 2027 • ૧૭ જાન્યુઆરી ૨૦૨૭</div>
+        </div>
+
+        <!-- Top Flap -->
+        <div class="flap-top"></div>
+
+        <!-- Wax Seal -->
+        <div id="wax-seal" class="wax-seal">
+          <div class="wax-seal-inner">
+            <span class="wax-seal-text">AD</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tap to reveal pulsing hint -->
+      <div class="tap-reveal-hint">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+        <span>Tap to Reveal • કંકોતરી ખોલવા ક્લિક કરો</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       TOP NAVIGATION BAR
+       ====================================================================== -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="#hero" class="nav-monogram">
+        <img src="assets/images/ad-logo.svg" alt="AD" class="nav-monogram-icon">
+        <span>A &amp; D • અ &amp; દ</span>
+      </a>
+
+      <div class="nav-controls">
+        <!-- Multi-language Switcher -->
+        <div class="lang-switcher-group">
+          <a href="index.html" class="lang-link-btn">English</a>
+          <a href="gujarati.html" class="lang-link-btn">ગુજરાતી</a>
+          <a href="bilingual.html" class="lang-link-btn active">English + ગુજરાતી</a>
+        </div>
+
+        <!-- Day / Night Mode Toggle -->
+        <button id="theme-toggle" class="theme-btn" aria-label="Toggle Night Mode" title="Light / Dark Theme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================================================================
+       HERO & AUSPICIOUS INVOCATION
+       ====================================================================== -->
+  <section id="hero" class="hero-section">
+    <div class="container">
+
+      <!-- Auspicious Shree Ganesha -->
+      <div class="shree-ganesh-block">
+        <img src="assets/images/ganesha.svg" alt="Lord Ganesha" class="ganesh-symbol">
+        <div class="shree-ganesh-text">॥ શ્રી ગણેશાય નમઃ ॥ • || Shree Ganeshay Namah ||</div>
+        <p class="shree-shlok">“વક્રતુણ્ડ મહાકાય સૂર્યકોટિ સમપ્રભ । નિર્વિઘ્નં કુરુ મે દેવ સર્વકાર્યેષુ સર્વદા ॥”</p>
+      </div>
+
+      <!-- Luxury AD Monogram Logo Crest -->
+      <div class="ad-crest-wrapper" onclick="window.reopenEnvelope()" title="Click to view Envelope opening animation again">
+        <img src="assets/images/ad-logo.svg" alt="Avani & Divyang Monogram Logo" class="ad-crest-img">
+      </div>
+
+      <p class="wedding-invite-heading">Together with their families, cordially invite you • ભાવભર્યું નિમંત્રણ</p>
+      <h1 class="couple-names-grand">Avani &amp; Divyang</h1>
+      <h2 class="couple-full-names" style="margin-bottom: 6px;">Avani Makwana <span>with</span> Divyang Rathod</h2>
+      <h3 style="font-family: 'Noto Serif Gujarati', serif; font-size: 20px; color: var(--gold-primary); margin-bottom: 22px;">
+        અવની મકવાણા <span style="font-size: 16px; color: var(--text-muted);">સંગાથે</span> દિવ્યાંગ રાઠોડ
+      </h3>
+
+      <!-- Wedding Date Pill -->
+      <div class="wedding-main-date-badge">
+        <div class="date-day">17 • ૧૭</div>
+        <div class="date-divider"></div>
+        <div class="date-details">
+          <div class="date-month-year">JANUARY 2027 • જાન્યુઆરી ૨૦૨૭</div>
+          <div class="date-city">JUNAGADH, GUJARAT • જૂનાગઢ</div>
+        </div>
+      </div>
+
+      <!-- Hero Couple Portrait Showcase -->
+      <div class="hero-portrait-card">
+        <div class="hero-portrait-img-box">
+          <img src="assets/images/couple-1.jpg" alt="Avani and Divyang" class="hero-portrait-img">
+          <div class="hero-portrait-overlay">
+            <h3 class="hero-tagline">Two Hearts, One Soul • બે હૃદય, એક પવિત્ર સંગાથ</h3>
+            <p class="hero-subtag">Beginning our journey of forever • જીવનભરના સાથની શરૂઆત</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-hint">
+        <span>Scroll to Explore • વિગતો જોવા સ્ક્રોલ કરો</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       INTERACTIVE "REVEAL THE DATE" SCRATCH CARD
+       ====================================================================== -->
+  <section class="container">
+    <div class="scratch-section">
+      <div class="scratch-header">
+        <h2 class="scratch-title">Reveal the Date • તારીખ દર્શન</h2>
+        <p class="scratch-subtitle">Scratch the hearts below • તારીખ જાણવા સોનેરી હૃદયને સ્ક્રેચ કરો</p>
+      </div>
+
+      <!-- 3 Golden Scratch Hearts (Day / Month / Year) -->
+      <div class="hearts-container">
+        <!-- Heart 1: Day -->
+        <div class="heart-card" data-heart="day">
+          <div class="heart-revealed">
+            <span class="unit-label">DAY • તારીખ</span>
+            <span class="unit-value">17</span>
+          </div>
+          <canvas class="heart-canvas"></canvas>
+        </div>
+
+        <!-- Heart 2: Month -->
+        <div class="heart-card" data-heart="month">
+          <div class="heart-revealed">
+            <span class="unit-label">MONTH • માસ</span>
+            <span class="unit-value" style="font-size: 20px;">JAN / જાન્યુ.</span>
+          </div>
+          <canvas class="heart-canvas"></canvas>
+        </div>
+
+        <!-- Heart 3: Year -->
+        <div class="heart-card" data-heart="year">
+          <div class="heart-revealed">
+            <span class="unit-label">YEAR • વર્ષ</span>
+            <span class="unit-value">2027</span>
+          </div>
+          <canvas class="heart-canvas"></canvas>
+        </div>
+      </div>
+
+      <!-- Reveal Celebration & Live Countdown Timer -->
+      <div id="reveal-celebration" class="reveal-celebration">
+        <div class="celebration-date-text">17th January 2027 • ૧૭ જાન્યુઆરી ૨૦૨૭</div>
+        <div class="celebration-tag">The Auspicious Wedding Day • શુભ લગ્ન દિન</div>
+
+        <!-- Live Countdown Timer -->
+        <div class="countdown-grid">
+          <div class="countdown-box">
+            <span id="count-days" class="countdown-number">00</span>
+            <span class="countdown-label">Days / દિવસો</span>
+          </div>
+          <div class="countdown-box">
+            <span id="count-hours" class="countdown-number">00</span>
+            <span class="countdown-label">Hours / કલાક</span>
+          </div>
+          <div class="countdown-box">
+            <span id="count-mins" class="countdown-number">00</span>
+            <span class="countdown-label">Mins / મિનિટ</span>
+          </div>
+          <div class="countdown-box">
+            <span id="count-secs" class="countdown-number">00</span>
+            <span class="countdown-label">Secs / સેકન્ડ</span>
+          </div>
+        </div>
+
+        <div class="scratch-actions">
+          <button class="btn-gold" onclick="window.addToGoogleCalendar({ title: 'Avani & Divyang Wedding • અવની અને દિવ્યાંગનો શુભ લગ્ન ઉત્સવ', details: 'Auspicious wedding ceremony of Avani Makwana & Divyang Rathod • અવની મકવાણા અને દિવ્યાંગ રાઠોડનો શુભ લગ્ન મહોત્સવ', location: 'Junagadh & Satapar, Gujarat' })">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Save to Google Calendar • કેલેન્ડરમાં ઉમેરો
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       GROOM SIDE / BRIDE SIDE FILTER PILL
+       ====================================================================== -->
+  <div class="container">
+    <div class="side-selector-container">
+      <div class="side-toggle-pill">
+        <button class="side-btn active" data-side="groom">
+          <span>🤵 Groom's Side • વર પક્ષ (Divyang Rathod)</span>
+        </button>
+        <button class="side-btn" data-side="bride">
+          <span>👰 Bride's Side • કન્યા પક્ષ (Avani Makwana)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       WEDDING ITINERARY & CEREMONY CARDS CAROUSEL
+       ====================================================================== -->
+  <section class="section-wrapper">
+    <div class="container">
+      <div class="section-header-box">
+        <span class="section-mini-subtitle">Wedding Itinerary • મંગલ રૂપરેખા</span>
+        <h2 class="section-main-title">The Celebration Unfolds • લગ્ન ઉત્સવ સમયાવલી</h2>
+        <div class="section-divider-ornament">
+          <span class="section-divider-line"></span>
+          <span class="section-divider-icon">✦</span>
+          <span class="section-divider-line"></span>
+        </div>
+      </div>
+
+      <!-- Carousel Navigation Controls -->
+      <div class="itinerary-carousel-container">
+        <div class="carousel-nav-arrows">
+          <button id="carousel-prev" class="carousel-btn" aria-label="Previous event">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button id="carousel-next" class="carousel-btn" aria-label="Next event">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+
+        <div id="itinerary-track" class="itinerary-track">
+
+          <!-- 1. Mandap Ropan -->
+          <div class="event-card" data-day="16">
+            <div class="event-num-badge">01</div>
+            <div class="event-icon-box">
+              <img src="assets/images/mandap.svg" alt="Mandap Ropan">
+            </div>
+            <h3 class="event-title-main">Mandap Ropan</h3>
+            <div class="event-title-sub">માંડવ રોપણ અને પૂજન</div>
+            <ul class="event-info-list">
+              <li class="event-info-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <span><strong>Date / તારીખ:</strong> 16th Jan 2027 • ૧૬ જાન્યુઆરી</span>
+              </li>
+              <li class="event-info-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span><strong>Time / સમય:</strong> 08:00 AM • સવારે ૮:૦૦</span>
+              </li>
+              <li class="event-info-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+                <span><strong>Attire:</strong> Traditional Ethnic • પરંપરાગત</span>
+              </li>
+            </ul>
+            <p class="event-desc">Sacred Mandap installation &amp; Lord Ganesha sthapana • ગણેશ પૂજન સાથે શુભ શરૂઆત.</p>
+            <div class="event-location-pill">
+              📍 Satapar Village, Jamjodhpur • સાતપર ગામ (360531)
+            </div>
+          </div>
+
+          <!-- 2. Haldi Ceremony -->
+          <div class="event-card" data-day="16">
+            <div class="event-num-badge">02</div>
+            <div class="event-icon-box">
+              <img src="assets/images/haldi.svg" alt="Haldi Ceremony">
+            </div>
+            <h3 class="event-title-main">Haldi Ceremony</h3>
+            <div class="event-title-sub">પીઠી રસમ (સુવર્ણ હળદી)</div>
+            <ul class="event-info-list">
+              <li class="event-info-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <span><strong>Date / તારીખ:</strong> 16th Jan 2027 • ૧૬ જાન્યુઆરી</span>
+              </li>
+              <li class="event-info-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span><strong>Time / સમય:</strong> 10:00 AM • સવારે ૧૦:૦૦</span>
+              </li>
+              <li class="event-info-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+                <span><strong>Attire:</strong> Bright Yellow Radiance • પીળા વસ્ત્રો</span>
+              </li>
+            </ul>
+            <p class="event-desc">Drenching the couple in golden turmeric paste &amp; love • કેસર-હળદીના સ્નેહ અભિષેક.</p>
+            <div class="event-location-pill">
+              📍 Satapar Village, Jamjodhpur • સાતપર ગામ (360531)
+            </div>
+          </div>
+
+          <!-- 3. Gotido Ceremony -->
+          <div class="event-card" data-day="16">
+            <div class="event-num-badge">03</div>
+            <div class="event-icon-box">
+              <img src="assets/images/gotido.svg" alt="Gotido Ceremony">
+            </div>
+            <h3 class="event-title-main">Gotido &amp; Mameru</h3>
+            <div class="event-title-sub">ગોતિડો ઉત્સવ અને મોસાળું</div>
+            <ul class="event-info-list">
+              <li class="event-info-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <span><strong>Date / તારીખ:</strong> 16th Jan 2027 • ૧૬ જાન્યુઆરી</span>
+              </li>
+              <li class="event-info-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 16 14"/></svg>
+                <span><strong>Time / સમય:</strong> 05:00 PM • સાંજે ૫:૦૦</span>
+              </li>
+              <li class="event-info-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+                <span><strong>Attire:</strong> Pastel Festive • રોયલ ફેસ્ટિવ</span>
+              </li>
+            </ul>
+            <p class="event-desc">Illuminated sacred pots &amp; maternal blessings • દીપ પૂજન અને મોસાળ પક્ષનું ભાવભર્યું સ્વાગત.</p>
+            <div class="event-location-pill">
+              📍 Satapar Village, Jamjodhpur • સાતપર ગામ (360531)
+            </div>
+          </div>
+
+          <!-- 4. Royal Dinner -->
+          <div class="event-card" data-day="16">
+            <div class="event-num-badge">04</div>
+            <div class="event-icon-box">
+              <img src="assets/images/dinner.svg" alt="Royal Dinner">
+            </div>
+            <h3 class="event-title-main">Preeti Bhojan</h3>
+            <div class="event-title-sub">શુભ પ્રીતિ ભોજન (ડિનર)</div>
+            <ul class="event-info-list">
+              <li class="event-info-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <span><strong>Date / તારીખ:</strong> 16th Jan 2027 • ૧૬ જાન્યુઆરી</span>
+              </li>
+              <li class="event-info-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span><strong>Time / સમય:</strong> 07:30 PM • સાંજે ૭:૩૦</span>
+              </li>
+              <li class="event-info-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+                <span><strong>Cuisine:</strong> Royal Kathiyawadi Feast • શાહી થાળ</span>
+              </li>
+            </ul>
+            <p class="event-desc">Lavish Gujarati feast of sweets and traditional savories • મિષ્ટાન અને કાઠિયાવાડી વાનગીઓનો થાળ.</p>
+            <div class="event-location-pill">
+              📍 Satapar Village, Jamjodhpur • સાતપર ગામ (360531)
+            </div>
+          </div>
+
+          <!-- 5. Dandiya Raas Night -->
+          <div class="event-card" data-day="16">
+            <div class="event-num-badge">05</div>
+            <div class="event-icon-box">
+              <img src="assets/images/dandiya.svg" alt="Dandiya Raas Night">
+            </div>
+            <h3 class="event-title-main">Dandiya Raas Night</h3>
+            <div class="event-title-sub">રાસ-ગરબા અને દાંડિયા નાઈટ</div>
+            <ul class="event-info-list">
+              <li class="event-info-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <span><strong>Date / તારીખ:</strong> 16th Jan 2027 • ૧૬ જાન્યુઆરી</span>
+              </li>
+              <li class="event-info-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span><strong>Time / સમય:</strong> 11:00 PM • રાત્રે ૧૧:૦૦ કલાકે</span>
+              </li>
+              <li class="event-info-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+                <span><strong>Attire:</strong> Chaniya Choli &amp; Kediyu • ચણિયા ચોળી</span>
+              </li>
+            </ul>
+            <p class="event-desc">Rhythmic Dandiya beats under the stars • ઢોલના તાલે અને દાંડિયાના ખખડાટે ગરબા ઉત્સવ.</p>
+            <div class="event-location-pill">
+              📍 Satapar Village, Jamjodhpur • સાતપર ગામ (360531)
+            </div>
+          </div>
+
+          <!-- 6. The Grand Wedding Day (17th Jan) -->
+          <div class="event-card" data-day="17" style="border: 1.5px solid var(--gold-primary);">
+            <div class="event-num-badge" style="background: linear-gradient(135deg, #e11d48, #881337); color: #fff;">06</div>
+            <div class="event-icon-box">
+              <img src="assets/images/wedding.svg" alt="Hast Melap & Mangal Fera">
+            </div>
+            <h3 class="event-title-main">The Wedding Ceremony</h3>
+            <div class="event-title-sub">શુભ લગ્ન સમારંભ (હસ્ત મેળાપ &amp; ફેરા)</div>
+            <ul class="event-info-list">
+              <li class="event-info-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <span><strong>Date / તારીખ:</strong> 17th Jan 2027 • ૧૭ જાન્યુઆરી</span>
+              </li>
+              <li class="event-info-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span><strong>Rituals / વિધિ:</strong> Hast Melap &amp; 4 Feras • હસ્ત મેળાપ</span>
+              </li>
+              <li class="event-info-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span><strong>Lunch / શુભ ભોજન:</strong> 12:30 PM • બપોરે ૧૨:૩૦</span>
+              </li>
+              <li class="event-info-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+                <span><strong>Vidai / વિદાય:</strong> 04:00 PM • સાંજે ૪:૦૦ કલાકે</span>
+              </li>
+            </ul>
+            <p class="event-desc">Eternal vows around the sacred fire &amp; vidai blessings • અગ્નિદેવની સાક્ષીએ સપ્તપદીના વચનો.</p>
+            <div class="event-location-pill" style="background: rgba(225, 29, 72, 0.15); font-weight: 600;">
+              📍 Junagadh, Gujarat • જૂનાગઢ (362001)
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       GUJARATI CULTURAL TAHUKO SECTION
+       ========================================================================== -->
+  <section class="container">
+    <div class="cultural-tahuko-box">
+      <h3 class="tahuko-title">॥ મંગલ ટહૂકો • Auspicious Verse ॥</h3>
+      <p class="tahuko-verse">
+        “લીલી પીળી કંકુ છાંટી કંકોતરી મોકલી, રૂડાં મોતીડે વધાવો કાજ...<br>
+        હસ્તમેળાપે પધારી અવની અને દિવ્યાંગને આશીર્વાદ આપજો, વધશે અમારું માન!”
+      </p>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       VENUES & DIRECTIONS SECTION
+       ====================================================================== -->
+  <section class="section-wrapper" id="venues">
+    <div class="container">
+      <div class="section-header-box">
+        <span class="section-mini-subtitle">Where Love Awaits • સ્થળ વિગતો</span>
+        <h2 class="section-main-title">Wedding Destination &amp; Venues</h2>
+        <div class="section-divider-ornament">
+          <span class="section-divider-line"></span>
+          <span class="section-divider-icon">✦</span>
+          <span class="section-divider-line"></span>
+        </div>
+      </div>
+
+      <div class="venues-grid">
+
+        <!-- Groom's Side Venue Card: ONLY Satapar Village -->
+        <div id="venue-groom" class="venue-card">
+          <span class="venue-side-badge">Groom's Side • વર પક્ષ (Divyang Rathod)</span>
+          <h3 class="venue-name">Satapar Village • સાતપર ગામ</h3>
+          <p class="venue-address-line">
+            <strong>Address / સરનામું:</strong><br>
+            Satapar Village, Jamjodhpur, District Jamnagar, Gujarat - 360531<br>
+            મુ. સાતપર ગામ, તા. જામજોધપુર, જિ. જામનગર (૩૬૦૫૩૧)
+          </p>
+          <div class="venue-event-list">
+            <strong>Events Celebrated Here • સાતપર ખાતેના પ્રસંગો:</strong><br>
+            Mandap Ropan (8:00 AM) • Haldi (10:00 AM) • Gotido (5:00 PM) • Preeti Bhojan Dinner (7:30 PM) • Dandiya Raas Night (11:00 PM)
+          </div>
+          <div class="venue-actions">
+            <a href="https://maps.google.com/?q=Satapar,Jamjodhpur,Gujarat,360531" target="_blank" rel="noopener" class="btn-gold" style="width: 100%;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Directions to Satapar • સાતપર નકશો
+            </a>
+          </div>
+        </div>
+
+        <!-- Bride's Side Venue Card: Junagadh -->
+        <div id="venue-bride" class="venue-card">
+          <span class="venue-side-badge">Bride's Side • કન્યા પક્ષ (Avani Makwana)</span>
+          <h3 class="venue-name">Junagadh Destination • જૂનાગઢ</h3>
+          <p class="venue-address-line">
+            <strong>Address / સરનામું:</strong><br>
+            Junagadh, Saurashtra, Gujarat - 362001<br>
+            જૂનાગઢ, સૌરાષ્ટ્ર, ગુજરાત (૩૬૨૦૦૧)
+          </p>
+          <div class="venue-event-list">
+            <strong>Events Celebrated Here • જૂનાગઢ ખાતેના પ્રસંગો:</strong><br>
+            All 16th &amp; 17th January Ceremonies • Mandap Ropan • Haldi • Preeti Bhojan • Dandiya Night • Grand Wedding Ceremony (Hast Melap, Lunch &amp; Vidai)
+          </div>
+          <div class="venue-actions">
+            <a href="https://maps.google.com/?q=Junagadh,Gujarat,362001" target="_blank" rel="noopener" class="btn-gold" style="width: 100%;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Directions to Junagadh • જૂનાગઢ નકશો
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       PHOTO GALLERY ("OUR BEAUTIFUL MOMENTS")
+       ====================================================================== -->
+  <section class="section-wrapper" id="moments">
+    <div class="container">
+      <div class="section-header-box">
+        <span class="section-mini-subtitle">Memories of Love • પ્રેમની સ્મૃતિઓ</span>
+        <h2 class="section-main-title">Our Beautiful Moments • અમારી સુંદર ક્ષણો</h2>
+        <div class="section-divider-ornament">
+          <span class="section-divider-line"></span>
+          <span class="section-divider-icon">✦</span>
+          <span class="section-divider-line"></span>
+        </div>
+      </div>
+
+      <div class="gallery-grid">
+
+        <!-- Photo 1 -->
+        <div class="gallery-item">
+          <div class="gallery-img-wrapper">
+            <img src="assets/images/couple-1.jpg" alt="Avani and Divyang Portrait" class="gallery-img" loading="lazy">
+            <div class="gallery-overlay">
+              <h4 class="gallery-caption-title">Together Forever</h4>
+              <p class="gallery-caption-sub">જીવનભરનો સાથ • Avani &amp; Divyang</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 2 -->
+        <div class="gallery-item">
+          <div class="gallery-img-wrapper">
+            <img src="assets/images/couple-2.jpg" alt="Candid Gaze" class="gallery-img" loading="lazy">
+            <div class="gallery-overlay">
+              <h4 class="gallery-caption-title">Silent Conversations</h4>
+              <p class="gallery-caption-sub">અણમોલ વાતો • A glance that said everything</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 3 -->
+        <div class="gallery-item">
+          <div class="gallery-img-wrapper">
+            <img src="assets/images/couple-3.jpg" alt="Traditional Silk" class="gallery-img" loading="lazy">
+            <div class="gallery-overlay">
+              <h4 class="gallery-caption-title">Golden Harmony</h4>
+              <p class="gallery-caption-sub">પીળા રંગનો ઉમંગ • Festive Radiance</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 4 -->
+        <div class="gallery-item">
+          <div class="gallery-img-wrapper">
+            <img src="assets/images/couple-4.jpg" alt="By the Sea" class="gallery-img" loading="lazy">
+            <div class="gallery-overlay">
+              <h4 class="gallery-caption-title">Endless Horizons</h4>
+              <p class="gallery-caption-sub">અનંત ક્ષિતિજ • Walking hand in hand</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 5 -->
+        <div class="gallery-item">
+          <div class="gallery-img-wrapper">
+            <img src="assets/images/couple-5.jpg" alt="Holding Hands & Rings" class="gallery-img" loading="lazy">
+            <div class="gallery-overlay">
+              <h4 class="gallery-caption-title">Sacred Bond</h4>
+              <p class="gallery-caption-sub">પવિત્ર સંકલ્પ • A lifelong promise</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox-modal" class="lightbox-modal">
+    <div class="lightbox-content">
+      <button id="lightbox-close" class="lightbox-close" aria-label="Close image">&times;</button>
+      <img id="lightbox-img" src="" alt="Enlarged photo" class="lightbox-img">
+      <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       FOOTER
+       ====================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <img src="assets/images/ad-logo.svg" alt="AD Crest" class="footer-crest">
+      <h3 class="footer-couple-names">Avani &amp; Divyang</h3>
+      <p class="footer-tag">Avani Makwana &amp; Divyang Rathod • અવની મકવાણા અને દિવ્યાંગ રાઠોડ</p>
+
+      <div style="margin-bottom: 25px;">
+        <div class="lang-switcher-group" style="background: rgba(197, 146, 44, 0.15); display: inline-flex;">
+          <a href="index.html" class="lang-link-btn">English</a>
+          <a href="gujarati.html" class="lang-link-btn">ગુજરાતી</a>
+          <a href="bilingual.html" class="lang-link-btn active">English + ગુજરાતી</a>
+        </div>
+      </div>
+
+      <p class="footer-copy">
+        With loving compliments from Makwana &amp; Rathod Families • ॥ લિ. મકવાણા અને રાઠોડ પરિવારના સ્નેહવંદન ॥
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/confetti.js"></script>
+  <script src="js/envelope.js"></script>
+  <script src="js/scratch.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

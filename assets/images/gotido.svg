@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="gotidoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C84B31"/>
+      <stop offset="50%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#991B1B"/>
+    </linearGradient>
+    <linearGradient id="flameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#EF4444"/>
+      <stop offset="60%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#FEF08A"/>
+    </linearGradient>
+  </defs>
+  <!-- Decorated Earthen Garbo / Pot with auspicious holes and designs -->
+  <path d="M30,55 C22,78 78,78 70,55 C68,46 62,44 62,40 L38,40 C38,44 32,46 30,55 Z" fill="url(#gotidoGrad)"/>
+  <ellipse cx="50" cy="40" rx="13" ry="3.5" fill="#B45309"/>
+  <!-- Mirrorwork Dots & Patterns on Gotido -->
+  <circle cx="50" cy="58" r="4.5" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1.5"/>
+  <circle cx="38" cy="62" r="3.5" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1.5"/>
+  <circle cx="62" cy="62" r="3.5" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1.5"/>
+  <circle cx="50" cy="69" r="3" fill="#FDE047"/>
+  <!-- Diya on top of Garbo -->
+  <path d="M40,38 C40,43 60,43 60,38 Z" fill="#D4AF37"/>
+  <!-- Holy Flame -->
+  <path d="M50,18 C46,26 44,30 46,35 C48,37 52,37 54,35 C56,30 54,26 50,18 Z" fill="url(#flameGrad)"/>
+  <circle cx="50" cy="30" r="3" fill="#FFFBEB" opacity="0.8"/>
+  <!-- Festive base rim -->
+  <ellipse cx="50" cy="78" rx="16" ry="4" fill="#92400E"/>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="palkiGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4AF37"/>
+      <stop offset="50%" stop-color="#FDE047"/>
+      <stop offset="100%" stop-color="#AA771C"/>
+    </linearGradient>
+  </defs>
+  <!-- Carrying Pole -->
+  <line x1="5" y1="45" x2="95" y2="45" stroke="url(#palkiGold)" stroke-width="4" stroke-linecap="round"/>
+  <!-- Canopy Roof -->
+  <path d="M28,45 C28,32 72,32 72,45 Z" fill="#991B1B" stroke="url(#palkiGold)" stroke-width="2"/>
+  <circle cx="50" cy="30" r="4" fill="url(#palkiGold)"/>
+  <!-- Palki Cabin Box -->
+  <rect x="30" y="45" width="40" height="28" rx="3" fill="#BE123C" stroke="url(#palkiGold)" stroke-width="2"/>
+  <!-- Cabin Window / Curtains -->
+  <rect x="38" y="50" width="24" height="18" rx="2" fill="#FEF3C7" stroke="url(#palkiGold)" stroke-width="1.5"/>
+  <path d="M38,50 Q44,59 38,68 L50,68 L50,50 Z" fill="#E11D48" opacity="0.6"/>
+  <path d="M62,50 Q56,59 62,68 L50,68 L50,50 Z" fill="#E11D48" opacity="0.6"/>
+  <!-- Hanging Tassels / Pearls -->
+  <circle cx="32" cy="76" r="2" fill="url(#palkiGold)"/>
+  <circle cx="41" cy="76" r="2" fill="url(#palkiGold)"/>
+  <circle cx="50" cy="76" r="2" fill="url(#palkiGold)"/>
+  <circle cx="59" cy="76" r="2" fill="url(#palkiGold)"/>
+  <circle cx="68" cy="76" r="2" fill="url(#palkiGold)"/>
+</svg>

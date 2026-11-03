@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="gGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4AF37"/>
+      <stop offset="50%" stop-color="#FFDF73"/>
+      <stop offset="100%" stop-color="#AA771C"/>
+    </linearGradient>
+  </defs>
+  <!-- Kalash Pot -->
+  <path d="M35,55 C30,75 70,75 65,55 C65,48 60,45 60,42 L40,42 C40,45 35,48 35,55 Z" fill="url(#gGold)"/>
+  <ellipse cx="50" cy="74" rx="14" ry="4" fill="url(#gGold)" opacity="0.8"/>
+  <ellipse cx="50" cy="42" rx="12" ry="3" fill="#ffdf73"/>
+  <!-- Swastik on Kalash -->
+  <text x="50" y="64" font-size="12" font-family="sans-serif" font-weight="bold" fill="#b91c1c" text-anchor="middle">卐</text>
+  <!-- Mango Leaves (Aamna Paan) -->
+  <path d="M42,42 C30,30 25,20 35,18 C40,25 43,35 44,42 Z" fill="#2d6a4f"/>
+  <path d="M58,42 C70,30 75,20 65,18 C60,25 57,35 56,42 Z" fill="#2d6a4f"/>
+  <path d="M48,42 C44,25 46,12 50,10 C54,12 56,25 52,42 Z" fill="#40916c"/>
+  <!-- Coconut (Shriphal) on Top -->
+  <ellipse cx="50" cy="28" rx="8" ry="10" fill="#8B4513"/>
+  <ellipse cx="50" cy="22" rx="4" ry="3" fill="#A0522D"/>
+  <path d="M48,18 L50,13 L52,18 Z" fill="#ffb703"/>
+</svg>
