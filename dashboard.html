@@ -486,6 +486,9 @@
         <button type="button" class="btn-action" onclick="refreshData()">
           🔄 Refresh Live Data
         </button>
+        <button type="button" class="btn-action" onclick="clearLocalCache()" style="color: #b91c1c;" title="Purge any old sample data and re-sync fresh from cloud">
+          🗑️ Reset / Re-sync
+        </button>
       </div>
 
       <div>
@@ -556,14 +559,28 @@
 
   <script>
     const BLESSINGS_KEY = 'divyang_avani_blessings_v1';
+    const ARCHIVE_KEY = 'divyang_avani_permanent_blessings_archive';
     const NTFY_BLESSINGS = 'https://ntfy.sh/divyang_avani_mrg_blessings';
     const NTFY_VISITS = 'https://ntfy.sh/divyang_avani_mrg_visits';
 
     let allBlessings = [];
     let currentFilterLang = 'all';
 
+    // List of any previous sample/mock names to purge
+    const DUMMY_NAMES = [
+      'રમેશભાઈ અને કોકિલાબેન મકવાણા',
+      'Pravinbhai & Hansaben Rathod',
+      'Bhavin, Neha & Kids',
+      'Ketan & Family',
+      'Dr. Aniket & Neha Shah',
+      'હસમુખભાઈ અને જયાબેન રાઠોડ',
+      'Rameshbhai & Kokilaben Makwana',
+      'પરીક્ષણ મહેમાન (Test Guest)'
+    ];
+
     // Helper: Determine if submission was made from Gujarati landing page
     function isGujaratiSubmission(item) {
+      if (!item) return false;
       if (item.langCode === 'gu' || item.language === 'ગુજરાતી' || item.lang === 'gu' || item.lang === 'ગુજરાતી') {
         return true;
       }
@@ -574,73 +591,37 @@
       return /[\u0A80-\u0AFF]/.test((item.message || '') + (item.name || ''));
     }
 
-    // Sample initial blessings properly tagged
-    const DEFAULT_BLESSINGS = [
-      {
-        name: 'રમેશભાઈ અને કોકિલાબેન મકવાણા',
-        city: 'જૂનાગઢ',
-        relation: 'પરિવાર વડીલ',
-        language: 'ગુજરાતી',
-        langCode: 'gu',
-        device: 'Apple iPhone • Apple Safari',
-        message: 'શ્રી ગણેશજી અને કુળદેવીના અસીમ આશીર્વાદ દિવ્યાંગ અને અવની પર સદા વરસતા રહે. આપ બંનેનું દાંપત્ય જીવન પ્રેમ, સુખ અને શાંતિથી સભર રહે એવી હૃદયપૂર્વક મંગલકામનાઓ!',
-        dateDisplay: '03 Nov 2026, 09:30 AM'
-      },
-      {
-        name: 'Pravinbhai & Hansaben Rathod',
-        city: 'Satapar Village',
-        relation: 'Family Elders',
-        language: 'ગુજરાતી',
-        langCode: 'gu',
-        device: 'Samsung Galaxy • Chrome Mobile',
-        message: 'Heartiest congratulations to our beloved Divyang and Avani! May your marital journey be filled with happiness and prosperity.',
-        dateDisplay: '03 Nov 2026, 09:15 AM'
-      },
-      {
-        name: 'Bhavin, Neha & Kids',
-        city: 'Ahmedabad',
-        relation: 'Friends & Family',
-        language: 'English',
-        langCode: 'en',
-        device: 'Apple Mac (MacBook) • Safari',
-        message: 'Wishing dear Divyang and Avani a lifetime of unending laughter, joy, and togetherness! Hearty congratulations on this auspicious union.',
-        dateDisplay: '03 Nov 2026, 08:45 AM'
-      },
-      {
-        name: 'Ketan & Family',
-        city: 'Mumbai',
-        relation: 'Family Friend',
-        language: 'English',
-        langCode: 'en',
-        device: 'Windows 11 PC • Google Chrome',
-        message: 'May God bless your married life with boundless peace, health, and prosperity. Congratulations to Makwana and Rathod families!',
-        dateDisplay: '03 Nov 2026, 08:20 AM'
-      }
-    ];
-
+    // Load real blessings from browser persistent storage (Zero dummy data)
     function loadBlessingsFromStorage() {
       try {
-        const stored = localStorage.getItem(BLESSINGS_KEY);
+        const stored = localStorage.getItem(BLESSINGS_KEY) || localStorage.getItem(ARCHIVE_KEY);
         if (stored) {
           const parsed = JSON.parse(stored);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            allBlessings = parsed;
+          if (Array.isArray(parsed)) {
+            allBlessings = parsed.filter(b => b && b.name && !DUMMY_NAMES.includes(b.name.trim()) && !String(b.id || '').startsWith('sample-'));
             return;
           }
         }
       } catch (e) {}
-      allBlessings = DEFAULT_BLESSINGS;
+      allBlessings = [];
     }
 
-    // Fetch visits from cloud topic
-    function fetchLiveVisits() {
-      fetch(`${NTFY_VISITS}/json?poll=1&since=all`)
-        .then(res => res.text())
-        .then(text => {
-          if (!text) return;
+    // Fetch visits from cloud topic across primary & backup channels
+    async function fetchLiveVisits() {
+      const endpoints = [
+        `${NTFY_VISITS}/json?poll=1&since=all`,
+        `${NTFY_VISITS}_backup/json?poll=1&since=all`
+      ];
+
+      let totalVisits = 0;
+      const devMap = {};
+
+      for (const url of endpoints) {
+        try {
+          const res = await fetch(url);
+          const text = await res.text();
+          if (!text) continue;
           const lines = text.trim().split('\n');
-          let totalVisits = 0;
-          const devMap = {};
 
           lines.forEach(line => {
             try {
@@ -651,7 +632,7 @@
                 let lastSeen = new Date(data.time * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                 let langUsed = 'English';
 
-                // Try to parse structured payload if available
+                // Try to parse structured payload
                 if (data.message && data.message.startsWith('{')) {
                   try {
                     const parsed = JSON.parse(data.message);
@@ -672,40 +653,26 @@
               }
             } catch (e) {}
           });
+        } catch (e) {}
+      }
 
-          // Ensure representative devices exist if fresh topic
-          if (Object.keys(devMap).length === 0) {
-            devMap['Apple iPhone • Apple Safari'] = { count: 16, lastSeen: 'Just now', lang: 'English' };
-            devMap['Samsung Galaxy • Chrome Mobile'] = { count: 10, lastSeen: '10 mins ago', lang: 'ગુજરાતી' };
-            devMap['Apple Mac (MacBook) • Safari'] = { count: 6, lastSeen: '20 mins ago', lang: 'English' };
-            devMap['Windows 11 PC • Google Chrome'] = { count: 4, lastSeen: '1 hour ago', lang: 'English' };
-            devMap['Linux Desktop • Firefox'] = { count: 2, lastSeen: '2 hours ago', lang: 'ગુજરાતી' };
-            totalVisits = 38;
-          }
-
-          document.getElementById('stat-visits-count').innerText = totalVisits;
-          document.getElementById('stat-devices-count').innerText = Object.keys(devMap).length;
-          renderDevices(devMap);
-        })
-        .catch(() => {
-          const fallback = {
-            'Apple iPhone • Apple Safari': { count: 16, lastSeen: 'Just now', lang: 'English' },
-            'Samsung Galaxy • Chrome Mobile': { count: 10, lastSeen: '10 mins ago', lang: 'ગુજરાતી' },
-            'Apple Mac (MacBook) • Safari': { count: 6, lastSeen: '20 mins ago', lang: 'English' },
-            'Windows 11 PC • Google Chrome': { count: 4, lastSeen: '1 hour ago', lang: 'English' }
-          };
-          renderDevices(fallback);
-          document.getElementById('stat-visits-count').innerText = '36';
-          document.getElementById('stat-devices-count').innerText = '4';
-        });
+      document.getElementById('stat-visits-count').innerText = totalVisits;
+      document.getElementById('stat-devices-count').innerText = Object.keys(devMap).length;
+      renderDevices(devMap);
     }
 
-    // Fetch live blessings from cloud
-    function fetchLiveBlessings() {
-      fetch(`${NTFY_BLESSINGS}/json?poll=1&since=all`)
-        .then(res => res.text())
-        .then(text => {
-          if (!text) return;
+    // Fetch live blessings from cloud across primary & backup channels
+    async function fetchLiveBlessings() {
+      const endpoints = [
+        `${NTFY_BLESSINGS}/json?poll=1&since=all`,
+        `${NTFY_BLESSINGS}_backup/json?poll=1&since=all`
+      ];
+
+      for (const url of endpoints) {
+        try {
+          const res = await fetch(url);
+          const text = await res.text();
+          if (!text) continue;
           const lines = text.trim().split('\n');
           lines.forEach(line => {
             try {
@@ -713,36 +680,45 @@
               if (data.event === 'message' && data.message) {
                 try {
                   const bObj = JSON.parse(data.message);
-                  if (bObj.name && !allBlessings.some(item => item.id === bObj.id || (item.name === bObj.name && item.message === bObj.message))) {
-                    // Preserve exact raw text and language
-                    allBlessings.unshift(bObj);
+                  if (bObj && bObj.name) {
+                    if (DUMMY_NAMES.includes(bObj.name.trim())) return;
+                    const exists = allBlessings.some(item => (bObj.id && item.id === bObj.id) || (item.name === bObj.name && item.message === bObj.message));
+                    if (!exists) {
+                      allBlessings.unshift(bObj);
+                    }
                   }
                 } catch (e) {
+                  // Fallback for simple text messages
                   const sender = data.title ? data.title.replace('Blessing:', '').replace(/\[.*\]/, '').replace(/\(.*\)/, '').trim() : 'Guest';
-                  const isGuTitle = data.title && data.title.includes('ગુજરાતી');
-                  if (!allBlessings.some(item => item.name === sender && item.message === data.message)) {
-                    allBlessings.unshift({
-                      name: sender,
-                      city: 'Well-wisher',
-                      device: 'Mobile Device',
-                      language: isGuTitle ? 'ગુજરાતી' : 'English',
-                      langCode: isGuTitle ? 'gu' : 'en',
-                      message: data.message,
-                      dateDisplay: new Date(data.time * 1000).toLocaleDateString('en-GB')
-                    });
+                  if (sender && !DUMMY_NAMES.includes(sender)) {
+                    const isGuTitle = data.title && data.title.includes('ગુજરાતી');
+                    if (!allBlessings.some(item => item.name === sender && item.message === data.message)) {
+                      allBlessings.unshift({
+                        name: sender,
+                        city: 'Well-wisher',
+                        device: 'Mobile Device',
+                        language: isGuTitle ? 'ગુજરાતી' : 'English',
+                        langCode: isGuTitle ? 'gu' : 'en',
+                        message: data.message,
+                        dateDisplay: new Date(data.time * 1000).toLocaleDateString('en-GB')
+                      });
+                    }
                   }
                 }
               }
             } catch (e) {}
           });
+        } catch (e) {}
+      }
 
-          updateCounts();
-          filterBlessings();
-        })
-        .catch(() => {
-          updateCounts();
-          filterBlessings();
-        });
+      // Permanent local preservation (couple never loses any blessing)
+      try {
+        localStorage.setItem(BLESSINGS_KEY, JSON.stringify(allBlessings));
+        localStorage.setItem(ARCHIVE_KEY, JSON.stringify(allBlessings));
+      } catch (e) {}
+
+      updateCounts();
+      filterBlessings();
     }
 
     // Update counts based strictly on interface language
@@ -771,7 +747,12 @@
 
       const keys = Object.keys(devMap);
       if (keys.length === 0) {
-        container.innerHTML = '<div style="color: var(--text-muted);">No device logs recorded yet.</div>';
+        container.innerHTML = `
+          <div style="grid-column: 1 / -1; padding: 25px; text-align: center; color: var(--pastel-text-muted); font-size: 14px; background: rgba(255,255,255,0.7); border-radius: 12px; border: 1px dashed rgba(165,130,110,0.25);">
+            📱 No device visits recorded yet.<br>
+            <span style="font-size: 13px; opacity: 0.85;">As soon as anyone opens the invitation link on an iPhone, Android phone, Mac, or Windows PC, their device details and open counts will appear here automatically.</span>
+          </div>
+        `;
         return;
       }
 
@@ -807,7 +788,15 @@
       if (!tbody) return;
 
       if (!list || list.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 25px; color: var(--text-muted);">No blessings match this view.</td></tr>`;
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" style="text-align: center; padding: 40px 20px; color: var(--pastel-text-muted);">
+              <div style="font-size: 32px; margin-bottom: 8px;">💌</div>
+              <strong style="color: var(--pastel-navy); display: block; font-size: 16px; margin-bottom: 4px;">No blessings in this view yet</strong>
+              <span style="font-size: 13px;">Blessings sent from any phone (iPhone, Android) or computer will appear here in real time.</span>
+            </td>
+          </tr>
+        `;
         return;
       }
 
@@ -826,7 +815,7 @@
 
         return `
           <tr>
-            <td style="font-weight: 700; color: var(--text-muted);">${index + 1}</td>
+            <td style="font-weight: 700; color: var(--pastel-text-muted);">${index + 1}</td>
             <td class="sender-name-cell">${escapeHtml(rawName)}</td>
             <td>${langBadge}</td>
             <td>${escapeHtml(rawCity)}</td>
@@ -930,93 +919,14 @@
       fetchLiveBlessings();
     };
 
-    function escapeHtml(str) {
-      if (!str) return '';
-      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-    }
-
-    // Initialize
-    document.addEventListener('DOMContentLoaded', () => {
-      loadBlessingsFromStorage();
-      updateCounts();
-      filterBlessings();
-      fetchLiveVisits();
-      fetchLiveBlessings();
-    });
-  </script>
-
-      renderBlessingsTable(filtered);
-    };
-
-    // Download CSV
-    window.downloadBlessingsCSV = function () {
-      if (!allBlessings || allBlessings.length === 0) {
-        alert('No blessings recorded yet.');
-        return;
+    window.clearLocalCache = function () {
+      if (confirm('Clear local browser cache and reload fresh real-time data from cloud?')) {
+        localStorage.removeItem(BLESSINGS_KEY);
+        localStorage.removeItem(ARCHIVE_KEY);
+        allBlessings = [];
+        fetchLiveBlessings();
+        fetchLiveVisits();
       }
-
-      let csv = '\uFEFF'; // UTF-8 BOM
-      csv += 'Sr No,Guest Name,Language,City / Relation,Device Used,Date & Time,Blessings Message\n';
-
-      allBlessings.forEach((item, idx) => {
-        const isGu = item.langCode === 'gu' || item.language === 'ગુજરાતી' || /[\u0A80-\u0AFF]/.test(item.message || '');
-        const lang = isGu ? 'Gujarati' : 'English';
-        const name = (item.name || '').replace(/"/g, '""');
-        const city = (item.city || '').replace(/"/g, '""');
-        const dev = (item.device || '').replace(/"/g, '""');
-        const time = (item.dateDisplay || '').replace(/"/g, '""');
-        const msg = (item.message || '').replace(/"/g, '""').replace(/\n/g, ' ');
-
-        csv += `"${idx + 1}","${name}","${lang}","${city}","${dev}","${time}","${msg}"\n`;
-      });
-
-      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', `Avani_Divyang_Wedding_Blessings_${new Date().toISOString().slice(0, 10)}.csv`);
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-    };
-
-    // Copy All
-    window.copyAllBlessings = function () {
-      if (!allBlessings || allBlessings.length === 0) {
-        alert('No blessings recorded yet.');
-        return;
-      }
-
-      let text = `🌸 AVANI & DIVYANG WEDDING BLESSINGS DATABASE 🌸\n`;
-      text += `Total Blessings: ${allBlessings.length}\n`;
-      text += `==============================================\n\n`;
-
-      allBlessings.forEach((item, idx) => {
-        const isGu = item.langCode === 'gu' || item.language === 'ગુજરાતી' || /[\u0A80-\u0AFF]/.test(item.message || '');
-        const langStr = isGu ? '[ગુજરાતી]' : '[English]';
-        text += `${idx + 1}. ${item.name} ${langStr} (${item.city || 'Guest'}) [${item.device || 'Mobile'}]\n`;
-        text += `   "${item.message}"\n`;
-        text += `   Date: ${item.dateDisplay || 'Jan 2027'}\n\n`;
-      });
-
-      navigator.clipboard.writeText(text).then(() => {
-        const btn = document.getElementById('btn-copy-all');
-        const orig = btn.innerText;
-        btn.innerText = '✓ Copied to Clipboard!';
-        btn.style.background = '#2e7d32';
-        btn.style.color = '#fff';
-        setTimeout(() => {
-          btn.innerText = orig;
-          btn.style.background = '';
-          btn.style.color = '';
-        }, 3000);
-      });
-    };
-
-    window.refreshData = function () {
-      fetchLiveVisits();
-      fetchLiveBlessings();
     };
 
     function escapeHtml(str) {
@@ -1024,13 +934,19 @@
       return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
-    // Initialize
+    // Initialize on Load
     document.addEventListener('DOMContentLoaded', () => {
       loadBlessingsFromStorage();
       updateCounts();
       filterBlessings();
       fetchLiveVisits();
       fetchLiveBlessings();
+
+      // Real-time automatic polling every 8 seconds
+      setInterval(() => {
+        fetchLiveBlessings();
+        fetchLiveVisits();
+      }, 8000);
     });
   </script>
 </body>

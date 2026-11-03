@@ -114,29 +114,24 @@
     window.CURRENT_DEVICE_OS = info.os;
     window.CURRENT_DEVICE_BROWSER = info.browser;
 
-    // Transmit visit log to cloud topic
-    const payload = JSON.stringify({
-      event: 'visit',
-      deviceId: deviceId,
-      device: info.deviceName,
-      baseDevice: info.baseDevice,
-      browser: info.browser,
-      os: info.os,
-      category: info.category,
-      screen: info.screen,
-      language: info.language,
-      langCode: info.langCode,
-      visitsCount: visits,
-      time: info.timestamp
-    });
-
+    // Transmit visit log to cloud topic (Zero non-ASCII in headers to prevent mobile ByteString errors)
     fetch(VISITS_URL, {
       method: 'POST',
-      body: payload,
       headers: {
-        'Title': `Visit: ${info.deviceName} [${info.language}] (#${visits})`,
-        'Tags': info.category === 'mobile' ? 'iphone,mobile' : 'computer,laptop'
-      }
+        'Content-Type': 'application/json'
+      },
+      body: payload,
+      keepalive: true
+    }).catch(() => {});
+
+    // Secondary redundant channel
+    fetch(`https://ntfy.sh/${VISITS_TOPIC}_backup`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: payload,
+      keepalive: true
     }).catch(() => {});
   }
 

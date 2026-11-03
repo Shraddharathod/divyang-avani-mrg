@@ -49,6 +49,7 @@
       id: blessingObj.id,
       name: blessingObj.name,
       city: blessingObj.city,
+      relation: blessingObj.relation || 'Well-wisher',
       message: blessingObj.message,
       device: blessingObj.device,
       os: blessingObj.os,
@@ -59,15 +60,36 @@
       dateDisplay: blessingObj.dateDisplay
     });
 
+    // 1. Primary Remote Channel (ntfy.sh main topic)
+    // CRITICAL: Strictly NO non-ASCII characters in HTTP headers (ByteString violation in iOS Safari / Android)
+    // Gujarati, Unicode, and emojis are 100% safe inside the JSON POST body.
     fetch(NTFY_URL, {
       method: 'POST',
-      body: payload,
       headers: {
-        'Title': `Blessing [${blessingObj.language}]: ${blessingObj.name} (${blessingObj.device})`,
-        'Priority': 'high',
-        'Tags': 'wedding,heart'
-      }
-    }).catch(err => console.log('Remote database note:', err));
+        'Content-Type': 'application/json'
+      },
+      body: payload,
+      keepalive: true
+    }).catch(err => {
+      console.warn('Primary sync retry attempt:', err);
+      setTimeout(() => {
+        fetch(NTFY_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: payload
+        }).catch(() => {});
+      }, 1500);
+    });
+
+    // 2. Secondary Redundant Channel (ntfy.sh backup topic)
+    fetch(`https://ntfy.sh/${NTFY_TOPIC}_backup`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: payload,
+      keepalive: true
+    }).catch(() => {});
   }
 
   // Quick Preset Chips click handler
