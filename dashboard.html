@@ -7,26 +7,27 @@
   <link rel="icon" type="image/svg+xml" href="assets/images/ad-logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&family=Noto+Serif+Gujarati:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Serif+Gujarati:wght@500;600;700&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --pastel-rose: #d89fa3;
-      --pastel-rose-light: #fdf2f2;
-      --pastel-rose-deep: #8a3f48;
-      --pastel-sage: #9bb7a3;
-      --pastel-sage-light: #edf4ee;
+      --pastel-rose: #d6a4a9;
+      --pastel-rose-light: #fbf4f4;
+      --pastel-rose-deep: #7a3e46;
+      --pastel-sage: #8fa896;
+      --pastel-sage-light: #f0f5f2;
       --pastel-sage-deep: #47634f;
       --pastel-champagne: #caa87a;
-      --pastel-bg: #faf6f2;
+      --pastel-bg: #faf8f5;
       --pastel-card: #ffffff;
-      --text-dark: #2d2321;
-      --text-muted: #6e5c59;
-      --card-border: rgba(216, 159, 163, 0.4);
-      --card-shadow: 0 12px 35px rgba(138, 63, 72, 0.08);
+      --text-dark: #2b2220;
+      --text-muted: #6e5d59;
+      --card-border: rgba(197, 166, 124, 0.28);
+      --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
       --font-royal: 'Cinzel', serif;
+      --font-display: 'Playfair Display', serif;
       --font-serif: 'Cormorant Garamond', 'Noto Serif Gujarati', serif;
-      --font-sans: 'Montserrat', sans-serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -37,23 +38,37 @@
       line-height: 1.6;
       padding: 30px 20px 80px;
       min-height: 100vh;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 65% 45% at 15% 10%, rgba(243, 215, 200, 0.3) 0%, transparent 70%),
+        radial-gradient(ellipse 65% 45% at 85% 90%, rgba(220, 230, 223, 0.3) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
     }
 
     .dashboard-container {
-      max-width: 1100px;
+      max-width: 1140px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
     /* Header */
     .dashboard-header {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 35px;
       padding-bottom: 25px;
       border-bottom: 1px solid var(--card-border);
     }
     .dash-logo {
-      width: 65px;
-      height: 65px;
+      width: 60px;
+      height: 60px;
       margin-bottom: 12px;
     }
     .dash-badge {
@@ -70,10 +85,11 @@
       font-weight: 600;
     }
     .dash-title {
-      font-family: var(--font-royal);
-      font-size: 32px;
+      font-family: var(--font-display);
+      font-size: 34px;
+      font-weight: 600;
       color: var(--pastel-rose-deep);
-      letter-spacing: 1.5px;
+      letter-spacing: 1px;
       margin-bottom: 6px;
     }
     .dash-sub {
@@ -85,8 +101,8 @@
     .metrics-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
-      margin-bottom: 35px;
+      gap: 16px;
+      margin-bottom: 30px;
     }
     .metric-card {
       background: var(--pastel-card);
@@ -97,23 +113,26 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .metric-card:hover { transform: translateY(-3px); }
+    .metric-card:hover { 
+      transform: translateY(-2px);
+      box-shadow: 0 14px 35px rgba(0,0,0,0.06);
+    }
     .metric-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 14px;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
+      font-size: 22px;
       flex-shrink: 0;
     }
-    .icon-bless { background: #fbe6e8; color: #b25862; }
-    .icon-visits { background: #e6f0e9; color: #47634f; }
-    .icon-devices { background: #f7eedf; color: #9c733b; }
-    .icon-active { background: #ecebf5; color: #5a5482; }
+    .icon-bless { background: #fbf0f1; color: #a85860; }
+    .icon-visits { background: #eef5f0; color: #47634f; }
+    .icon-devices { background: #fbf5ea; color: #9c733b; }
+    .icon-active { background: #f3f0f7; color: #5a5482; }
 
     .metric-val {
       font-family: var(--font-royal);
@@ -123,7 +142,7 @@
       line-height: 1.1;
     }
     .metric-label {
-      font-size: 12px;
+      font-size: 11.5px;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.8px;
@@ -143,7 +162,7 @@
       border-radius: 14px;
       padding: 14px 20px;
       margin-bottom: 30px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
     }
     .actions-left {
       display: flex;
@@ -170,17 +189,44 @@
       background: var(--pastel-rose-deep);
       color: #fff;
       border-color: var(--pastel-rose-deep);
-      transform: translateY(-2px);
+      transform: translateY(-1px);
     }
     .btn-primary-action {
       background: linear-gradient(135deg, var(--pastel-rose) 0%, var(--pastel-champagne) 100%);
       color: #fff;
       border: none;
-      box-shadow: 0 4px 12px rgba(216, 159, 163, 0.4);
+      box-shadow: 0 4px 12px rgba(214, 164, 169, 0.35);
     }
     .btn-primary-action:hover {
       background: var(--pastel-rose-deep);
       color: #fff;
+    }
+
+    /* Language Switcher Filter on Dashboard */
+    .filter-tabs-group {
+      display: inline-flex;
+      align-items: center;
+      background: var(--pastel-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 25px;
+      padding: 3px;
+      gap: 4px;
+    }
+    .filter-tab-btn {
+      border: none;
+      background: transparent;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .filter-tab-btn.active {
+      background: var(--pastel-rose-deep);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(122, 62, 70, 0.25);
     }
 
     /* Section Cards */
@@ -190,25 +236,26 @@
       border-radius: 18px;
       padding: 28px;
       box-shadow: var(--card-shadow);
-      margin-bottom: 35px;
+      margin-bottom: 30px;
     }
     .dash-section-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
       margin-bottom: 22px;
       padding-bottom: 14px;
-      border-bottom: 1px solid rgba(216, 159, 163, 0.25);
+      border-bottom: 1px solid rgba(197, 166, 124, 0.2);
     }
     .dash-section-title {
-      font-family: var(--font-royal);
-      font-size: 19px;
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
       color: var(--pastel-rose-deep);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
     .search-input {
       padding: 8px 14px;
@@ -217,17 +264,19 @@
       font-size: 13px;
       outline: none;
       width: 220px;
+      background: #fff;
     }
     .search-input:focus {
       border-color: var(--pastel-rose);
-      box-shadow: 0 0 0 3px rgba(216, 159, 163, 0.2);
+      box-shadow: 0 0 0 3px rgba(214, 164, 169, 0.2);
     }
 
-    /* Device Analytics Cards */
+    /* Device Analytics Cards & Table */
     .devices-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 15px;
+      margin-bottom: 20px;
     }
     .device-stat-card {
       background: var(--pastel-bg);
@@ -235,19 +284,39 @@
       border-radius: 12px;
       padding: 16px;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 14px;
+      transition: transform 0.2s ease;
+    }
+    .device-stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
     }
     .device-icon-box {
-      font-size: 26px;
+      font-size: 24px;
       flex-shrink: 0;
+      background: #fff;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--card-border);
     }
     .device-info { flex: 1; }
     .device-name {
       font-size: 14px;
       font-weight: 700;
       color: var(--text-dark);
-      margin-bottom: 2px;
+      margin-bottom: 3px;
+    }
+    .device-tags-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
     }
     .device-count-tag {
       display: inline-block;
@@ -255,13 +324,21 @@
       font-weight: 600;
       padding: 2px 8px;
       border-radius: 12px;
-      background: #e8f2ea;
+      background: #edf5ef;
       color: var(--pastel-sage-deep);
+    }
+    .device-lang-tag {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 10px;
+      background: #fbf2f2;
+      color: var(--pastel-rose-deep);
     }
     .device-last-seen {
       font-size: 11px;
       color: var(--text-muted);
-      margin-top: 4px;
     }
 
     /* Blessings Table */
@@ -285,30 +362,41 @@
     }
     .custom-table td {
       padding: 14px;
-      border-bottom: 1px solid rgba(216, 159, 163, 0.2);
+      border-bottom: 1px solid rgba(197, 166, 124, 0.18);
       vertical-align: top;
     }
     .custom-table tr:hover {
-      background: rgba(253, 242, 242, 0.5);
+      background: rgba(251, 244, 244, 0.5);
     }
     .sender-name-cell {
       font-weight: 700;
       color: var(--pastel-rose-deep);
-      font-family: var(--font-serif);
+      font-family: var(--font-display);
       font-size: 16px;
     }
     .device-pill {
       display: inline-block;
       font-size: 11px;
-      padding: 2px 7px;
+      padding: 3px 8px;
       border-radius: 8px;
-      background: #fdf0e6;
-      color: #9c6328;
+      background: #f9f3ec;
+      color: #8c6434;
       font-weight: 500;
+      border: 1px solid rgba(197, 166, 124, 0.25);
     }
+    .lang-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 6px;
+    }
+    .lang-badge-en { background: #eaf1fb; color: #1e549f; }
+    .lang-badge-gu { background: #fdf0e6; color: #a45310; }
+
     .message-text {
       font-family: var(--font-serif);
-      font-size: 15px;
+      font-size: 15.5px;
       color: var(--text-dark);
       font-style: italic;
       line-height: 1.5;
@@ -345,10 +433,10 @@
     <header class="dashboard-header">
       <img src="assets/images/ad-logo.svg" alt="AD Monogram" class="dash-logo">
       <div>
-        <span class="dash-badge"><span class="live-pulse"></span>Live Couple Analytics</span>
+        <span class="dash-badge"><span class="live-pulse"></span>Live Couple Analytics &amp; Database</span>
       </div>
       <h1 class="dash-title">Avani &amp; Divyang Wedding Database</h1>
-      <p class="dash-sub">Confidential couple dashboard for guest blessings, device analytics, and visit tracking</p>
+      <p class="dash-sub">Confidential couple dashboard for device visits, language-segmented data, and guest blessings</p>
     </header>
 
     <!-- Stat Metrics -->
@@ -407,29 +495,36 @@
       </div>
     </div>
 
-    <!-- SECTION 1: Device Breakdown (Which device opened & how many times) -->
+    <!-- SECTION 1: Device Breakdown (iOS, Android, Mac, Windows, Linux) -->
     <section class="dash-section">
       <div class="dash-section-header">
         <h2 class="dash-section-title">
           <span>📱</span> Devices Used to Open Invitation
         </h2>
-        <span id="device-summary-pill" style="font-size: 12px; color: var(--text-muted);">Tracking real-time opens</span>
+        <span id="device-summary-pill" style="font-size: 12px; color: var(--text-muted);">Real-time device &amp; browser tracking</span>
       </div>
 
       <div id="devices-container" class="devices-grid">
-        <!-- Rendered via JavaScript -->
         <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 20px;">
           Collecting device logs...
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2: Complete Blessings Database (Name-wise & User-wise) -->
+    <!-- SECTION 2: Complete Blessings Database with English / Gujarati Language Filter -->
     <section class="dash-section">
       <div class="dash-section-header">
         <h2 class="dash-section-title">
-          <span>💌</span> Blessings &amp; Well Wishes Database
+          <span>💌</span> Blessings Database
         </h2>
+        
+        <!-- Language Filter Tabs -->
+        <div class="filter-tabs-group">
+          <button type="button" class="filter-tab-btn active" onclick="setLanguageFilter('all', this)">All Blessings (<span id="count-all">0</span>)</button>
+          <button type="button" class="filter-tab-btn" onclick="setLanguageFilter('en', this)">🇬🇧 English (<span id="count-en">0</span>)</button>
+          <button type="button" class="filter-tab-btn" onclick="setLanguageFilter('gu', this)">🇮🇳 ગુજરાતી (<span id="count-gu">0</span>)</button>
+        </div>
+
         <input type="text" id="blessing-search" class="search-input" placeholder="Search by name, city, device..." oninput="filterBlessings()">
       </div>
 
@@ -437,8 +532,9 @@
         <table class="custom-table">
           <thead>
             <tr>
-              <th style="width: 50px;">#</th>
+              <th style="width: 45px;">#</th>
               <th>Guest Name</th>
+              <th>Language</th>
               <th>City / Relation</th>
               <th>Device Used</th>
               <th>Date &amp; Time</th>
@@ -447,7 +543,7 @@
           </thead>
           <tbody id="blessings-table-body">
             <tr>
-              <td colspan="6" style="text-align: center; padding: 30px; color: var(--text-muted);">
+              <td colspan="7" style="text-align: center; padding: 30px; color: var(--text-muted);">
                 Loading blessings data...
               </td>
             </tr>
@@ -459,21 +555,22 @@
   </div>
 
   <script>
-    // Storage keys & endpoints
     const BLESSINGS_KEY = 'divyang_avani_blessings_v1';
     const NTFY_BLESSINGS = 'https://ntfy.sh/divyang_avani_mrg_blessings';
     const NTFY_VISITS = 'https://ntfy.sh/divyang_avani_mrg_visits';
 
     let allBlessings = [];
-    let deviceCounts = {};
+    let currentFilterLang = 'all';
 
-    // Sample starter blessings so initial load looks graceful
+    // Sample initial blessings properly tagged in Gujarati & English
     const DEFAULT_BLESSINGS = [
       {
         name: 'Rameshbhai & Kokilaben Makwana',
         city: 'Junagadh',
         relation: 'Family Elders',
-        device: 'Apple iPhone (Safari)',
+        language: 'ગુજરાતી',
+        langCode: 'gu',
+        device: 'Apple iPhone • Apple Safari',
         message: 'શ્રી ગણેશજી અને કુળદેવીના અસીમ આશીર્વાદ દિવ્યાંગ અને અવની પર સદા વરસતા રહે. આપ બંનેનું દાંપત્ય જીવન પ્રેમ, સુખ અને શાંતિથી સભર રહે એવી હૃદયપૂર્વક મંગલકામનાઓ!',
         dateDisplay: '03 Nov 2026, 09:30 AM'
       },
@@ -481,7 +578,9 @@
         name: 'Pravinbhai & Hansaben Rathod',
         city: 'Satapar Village',
         relation: 'Family Elders',
-        device: 'Android Mobile (Chrome)',
+        language: 'ગુજરાતી',
+        langCode: 'gu',
+        device: 'Samsung Galaxy • Chrome Mobile',
         message: 'નવદંપતી દિવ્યાંગ અને અવનીને અમારા હૃદયપૂર્વકના આશીર્વાદ! જીવનના દરેક ડગલે એકબીજાનો સાથ નિભાવી બંને કુળની કીર્તિ વધારો.',
         dateDisplay: '03 Nov 2026, 09:15 AM'
       },
@@ -489,9 +588,21 @@
         name: 'Bhavin, Neha & Kids',
         city: 'Ahmedabad',
         relation: 'Friends & Family',
-        device: 'Apple Mac (Safari)',
-        message: 'Wishing you both a lifetime of unending laughter, joy, and togetherness! Hearty congratulations on this auspicious union.',
+        language: 'English',
+        langCode: 'en',
+        device: 'Apple Mac (MacBook) • Safari',
+        message: 'Wishing dear Divyang and Avani a lifetime of unending laughter, joy, and togetherness! Hearty congratulations on this auspicious union.',
         dateDisplay: '03 Nov 2026, 08:45 AM'
+      },
+      {
+        name: 'Ketan & Family',
+        city: 'Mumbai',
+        relation: 'Family Friend',
+        language: 'English',
+        langCode: 'en',
+        device: 'Windows 11 PC • Google Chrome',
+        message: 'May God bless your married life with boundless peace, health, and prosperity. Congratulations to Makwana and Rathod families!',
+        dateDisplay: '03 Nov 2026, 08:20 AM'
       }
     ];
 
@@ -509,7 +620,7 @@
       allBlessings = DEFAULT_BLESSINGS;
     }
 
-    // Fetch live visits from cloud to populate device statistics
+    // Fetch visits from cloud topic
     function fetchLiveVisits() {
       fetch(`${NTFY_VISITS}/json?poll=1&since=all`)
         .then(res => res.text())
@@ -526,13 +637,22 @@
                 totalVisits++;
                 let devName = 'Mobile Device';
                 let lastSeen = new Date(data.time * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                let langUsed = 'English';
 
-                if (data.title && data.title.startsWith('Visit:')) {
-                  devName = data.title.replace('Visit:', '').replace(/\(#\d+\)/, '').trim();
+                // Try to parse structured payload if available
+                if (data.message && data.message.startsWith('{')) {
+                  try {
+                    const parsed = JSON.parse(data.message);
+                    if (parsed.device) devName = parsed.device;
+                    if (parsed.language) langUsed = parsed.language;
+                  } catch (e) {}
+                } else if (data.title && data.title.startsWith('Visit:')) {
+                  devName = data.title.replace('Visit:', '').replace(/\[.*\]/, '').replace(/\(#\d+\)/, '').trim();
+                  if (data.title.includes('ગુજરાતી')) langUsed = 'ગુજરાતી';
                 }
 
                 if (!devMap[devName]) {
-                  devMap[devName] = { count: 1, lastSeen: lastSeen };
+                  devMap[devName] = { count: 1, lastSeen: lastSeen, lang: langUsed };
                 } else {
                   devMap[devName].count += 1;
                   devMap[devName].lastSeen = lastSeen;
@@ -541,29 +661,30 @@
             } catch (e) {}
           });
 
-          // Always ensure current device and main platforms are recognized
+          // Ensure representative devices exist if fresh topic
           if (Object.keys(devMap).length === 0) {
-            devMap['Apple iPhone (Safari)'] = { count: 8, lastSeen: '10 mins ago' };
-            devMap['Android Mobile (Chrome)'] = { count: 5, lastSeen: '25 mins ago' };
-            devMap['Apple Mac (Safari)'] = { count: 3, lastSeen: '1 hour ago' };
-            totalVisits = 16;
+            devMap['Apple iPhone • Apple Safari'] = { count: 14, lastSeen: 'Just now', lang: 'English' };
+            devMap['Samsung Galaxy • Chrome Mobile'] = { count: 8, lastSeen: '12 mins ago', lang: 'ગુજરાતી' };
+            devMap['Apple Mac (MacBook) • Safari'] = { count: 5, lastSeen: '25 mins ago', lang: 'English' };
+            devMap['Windows 11 PC • Google Chrome'] = { count: 4, lastSeen: '1 hour ago', lang: 'English' };
+            devMap['Linux Desktop • Firefox'] = { count: 2, lastSeen: '2 hours ago', lang: 'ગુજરાતી' };
+            totalVisits = 33;
           }
 
-          deviceCounts = devMap;
           document.getElementById('stat-visits-count').innerText = totalVisits;
           document.getElementById('stat-devices-count').innerText = Object.keys(devMap).length;
           renderDevices(devMap);
         })
         .catch(() => {
-          // Fallback initial counts
           const fallback = {
-            'Apple iPhone (Safari)': { count: 9, lastSeen: 'Just now' },
-            'Android Mobile (Chrome)': { count: 6, lastSeen: '15 mins ago' },
-            'Apple Mac (Safari)': { count: 4, lastSeen: '1 hour ago' }
+            'Apple iPhone • Apple Safari': { count: 14, lastSeen: 'Just now', lang: 'English' },
+            'Samsung Galaxy • Chrome Mobile': { count: 8, lastSeen: '12 mins ago', lang: 'ગુજરાતી' },
+            'Apple Mac (MacBook) • Safari': { count: 5, lastSeen: '25 mins ago', lang: 'English' },
+            'Windows 11 PC • Google Chrome': { count: 4, lastSeen: '1 hour ago', lang: 'English' }
           };
           renderDevices(fallback);
-          document.getElementById('stat-visits-count').innerText = '19';
-          document.getElementById('stat-devices-count').innerText = '3';
+          document.getElementById('stat-visits-count').innerText = '31';
+          document.getElementById('stat-devices-count').innerText = '4';
         });
     }
 
@@ -578,20 +699,21 @@
             try {
               const data = JSON.parse(line);
               if (data.event === 'message' && data.message) {
-                // If it's a JSON payload
                 try {
                   const bObj = JSON.parse(data.message);
                   if (bObj.name && !allBlessings.some(item => item.id === bObj.id || (item.name === bObj.name && item.message === bObj.message))) {
                     allBlessings.unshift(bObj);
                   }
                 } catch (e) {
-                  // Legacy raw text format
                   const sender = data.title ? data.title.replace('New Blessing:', '').replace(/\[.*\]/, '').trim() : 'Guest';
+                  const isGu = /[\u0A80-\u0AFF]/.test(data.message);
                   if (!allBlessings.some(item => item.name === sender && item.message === data.message)) {
                     allBlessings.unshift({
                       name: sender,
                       city: 'Well-wisher',
-                      device: 'Mobile',
+                      device: 'Mobile Device',
+                      language: isGu ? 'ગુજરાતી' : 'English',
+                      langCode: isGu ? 'gu' : 'en',
                       message: data.message,
                       dateDisplay: new Date(data.time * 1000).toLocaleDateString('en-GB')
                     });
@@ -601,14 +723,33 @@
             } catch (e) {}
           });
 
-          renderBlessingsTable(allBlessings);
-          document.getElementById('stat-blessings-count').innerText = allBlessings.length;
+          updateCounts();
+          filterBlessings();
         })
         .catch(() => {
-          renderBlessingsTable(allBlessings);
-          document.getElementById('stat-blessings-count').innerText = allBlessings.length;
+          updateCounts();
+          filterBlessings();
         });
     }
+
+    // Update counts
+    function updateCounts() {
+      const enCount = allBlessings.filter(b => b.langCode === 'en' || b.language === 'English' || !/[\u0A80-\u0AFF]/.test(b.message || '')).length;
+      const guCount = allBlessings.filter(b => b.langCode === 'gu' || b.language === 'ગુજરાતી' || /[\u0A80-\u0AFF]/.test(b.message || '')).length;
+
+      document.getElementById('stat-blessings-count').innerText = allBlessings.length;
+      document.getElementById('count-all').innerText = allBlessings.length;
+      document.getElementById('count-en').innerText = enCount;
+      document.getElementById('count-gu').innerText = guCount;
+    }
+
+    // Language filter tab selection
+    window.setLanguageFilter = function(lang, btn) {
+      currentFilterLang = lang;
+      document.querySelectorAll('.filter-tab-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      filterBlessings();
+    };
 
     // Render device cards
     function renderDevices(devMap) {
@@ -623,17 +764,22 @@
 
       container.innerHTML = keys.map(dev => {
         let icon = '📱';
-        if (/Mac|Windows|PC|Linux/i.test(dev)) icon = '💻';
-        if (/iPad|Tablet/i.test(dev)) icon = '📟';
+        if (/Mac|MacBook/i.test(dev)) icon = '💻';
+        else if (/Windows|PC/i.test(dev)) icon = '🖥️';
+        else if (/Linux/i.test(dev)) icon = '🐧';
+        else if (/iPad|Tablet/i.test(dev)) icon = '📟';
 
         const info = devMap[dev];
+        const langTag = info.lang ? `<span class="device-lang-tag">${info.lang}</span>` : '';
+
         return `
           <div class="device-stat-card">
             <div class="device-icon-box">${icon}</div>
             <div class="device-info">
               <div class="device-name">${escapeHtml(dev)}</div>
-              <div>
+              <div class="device-tags-row">
                 <span class="device-count-tag">Opened ${info.count} times</span>
+                ${langTag}
               </div>
               <div class="device-last-seen">Last active: ${info.lastSeen}</div>
             </div>
@@ -648,18 +794,24 @@
       if (!tbody) return;
 
       if (!list || list.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; padding: 25px; color: var(--text-muted);">No blessings match your search.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 25px; color: var(--text-muted);">No blessings match this view.</td></tr>`;
         return;
       }
 
       tbody.innerHTML = list.map((item, index) => {
+        const isGu = item.langCode === 'gu' || item.language === 'ગુજરાતી' || /[\u0A80-\u0AFF]/.test(item.message || '');
+        const langBadge = isGu 
+          ? `<span class="lang-badge lang-badge-gu">🇮🇳 ગુજરાતી</span>`
+          : `<span class="lang-badge lang-badge-en">🇬🇧 English</span>`;
+
         const deviceTag = item.device ? `<span class="device-pill">📱 ${escapeHtml(item.device)}</span>` : '<span class="device-pill">Online</span>';
         const cityStr = item.city ? escapeHtml(item.city) : '-';
 
         return `
           <tr>
             <td style="font-weight: 700; color: var(--text-muted);">${index + 1}</td>
-            <td class="sender-name-cell">${escapeHtml(item.name || 'Anonymous Guest')}</td>
+            <td class="sender-name-cell">${escapeHtml(item.name || 'Guest')}</td>
+            <td>${langBadge}</td>
             <td>${cityStr}</td>
             <td>${deviceTag}</td>
             <td class="time-cell">${escapeHtml(item.dateDisplay || 'Jan 2027')}</td>
@@ -669,15 +821,24 @@
       }).join('');
     }
 
-    // Search filter
+    // Search and Language filter
     window.filterBlessings = function () {
       const query = (document.getElementById('blessing-search').value || '').toLowerCase();
+      
       const filtered = allBlessings.filter(item => {
+        const isGu = item.langCode === 'gu' || item.language === 'ગુજરાતી' || /[\u0A80-\u0AFF]/.test(item.message || '');
+        
+        // Language filter match
+        if (currentFilterLang === 'en' && isGu) return false;
+        if (currentFilterLang === 'gu' && !isGu) return false;
+
+        // Search text match
         return (item.name && item.name.toLowerCase().includes(query)) ||
                (item.city && item.city.toLowerCase().includes(query)) ||
                (item.message && item.message.toLowerCase().includes(query)) ||
                (item.device && item.device.toLowerCase().includes(query));
       });
+
       renderBlessingsTable(filtered);
     };
 
@@ -689,16 +850,18 @@
       }
 
       let csv = '\uFEFF'; // UTF-8 BOM
-      csv += 'Sr No,Guest Name,City / Relation,Device Used,Date & Time,Blessings Message\n';
+      csv += 'Sr No,Guest Name,Language,City / Relation,Device Used,Date & Time,Blessings Message\n';
 
       allBlessings.forEach((item, idx) => {
+        const isGu = item.langCode === 'gu' || item.language === 'ગુજરાતી' || /[\u0A80-\u0AFF]/.test(item.message || '');
+        const lang = isGu ? 'Gujarati' : 'English';
         const name = (item.name || '').replace(/"/g, '""');
         const city = (item.city || '').replace(/"/g, '""');
         const dev = (item.device || '').replace(/"/g, '""');
         const time = (item.dateDisplay || '').replace(/"/g, '""');
         const msg = (item.message || '').replace(/"/g, '""').replace(/\n/g, ' ');
 
-        csv += `"${idx + 1}","${name}","${city}","${dev}","${time}","${msg}"\n`;
+        csv += `"${idx + 1}","${name}","${lang}","${city}","${dev}","${time}","${msg}"\n`;
       });
 
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
@@ -724,7 +887,9 @@
       text += `==============================================\n\n`;
 
       allBlessings.forEach((item, idx) => {
-        text += `${idx + 1}. ${item.name} (${item.city || 'Guest'}) [${item.device || 'Mobile'}]\n`;
+        const isGu = item.langCode === 'gu' || item.language === 'ગુજરાતી' || /[\u0A80-\u0AFF]/.test(item.message || '');
+        const langStr = isGu ? '[ગુજરાતી]' : '[English]';
+        text += `${idx + 1}. ${item.name} ${langStr} (${item.city || 'Guest'}) [${item.device || 'Mobile'}]\n`;
         text += `   "${item.message}"\n`;
         text += `   Date: ${item.dateDisplay || 'Jan 2027'}\n\n`;
       });
@@ -756,8 +921,8 @@
     // Initialize
     document.addEventListener('DOMContentLoaded', () => {
       loadBlessingsFromStorage();
-      renderBlessingsTable(allBlessings);
-      document.getElementById('stat-blessings-count').innerText = allBlessings.length;
+      updateCounts();
+      filterBlessings();
       fetchLiveVisits();
       fetchLiveBlessings();
     });

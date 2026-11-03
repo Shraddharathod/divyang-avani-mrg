@@ -40,12 +40,13 @@
 }
 
 .scratch-title {
-  font-family: 'Alex Brush', cursive;
-  font-size: 54px;
-  color: #fef0a6;
+  font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+  font-size: 44px;
+  font-weight: 600;
+  color: #faecd6;
   margin: 0;
-  text-shadow: 0 0 18px rgba(253, 240, 166, 0.45);
-  line-height: 1;
+  letter-spacing: 1.5px;
+  line-height: 1.15;
 }
 
 .scratch-subtitle {
@@ -164,9 +165,11 @@
 }
 
 .celebration-tag {
-  font-family: 'Alex Brush', cursive;
-  font-size: 34px;
-  color: #fbcfe8;
+  font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: #faecd6;
   margin-bottom: 20px;
 }
 

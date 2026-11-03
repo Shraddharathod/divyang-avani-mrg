@@ -2,8 +2,9 @@
    BLESSINGS & WELL WISHES SUBMISSION MODULE (AVANI & DIVYANG WEDDING)
    - Name-wise & User-wise Blessings
    - Strictly NO money / payment
-   - No blessings list on public landing page (private database on dashboard.html)
-   - Transmits device name, timestamp, and message to couple's database
+   - Detects whether submitted in English or Gujarati
+   - Attaches precise device name (iPhone, Android, Mac, Windows, Linux)
+   - Transmits to private couple database on dashboard.html
    ========================================================================== */
 
 (function () {
@@ -13,20 +14,26 @@
   const NTFY_TOPIC = 'divyang_avani_mrg_blessings';
   const NTFY_URL = `https://ntfy.sh/${NTFY_TOPIC}`;
 
-  // Retrieve current device name
-  function getDevice() {
-    if (window.CURRENT_DEVICE_NAME) return window.CURRENT_DEVICE_NAME;
+  // Retrieve current device & OS
+  function getDeviceDetails() {
     if (typeof window.getDetailedDevice === 'function') {
-      return window.getDetailedDevice().deviceName;
+      return window.getDetailedDevice();
     }
     const ua = navigator.userAgent;
-    if (/iPhone/i.test(ua)) return 'Apple iPhone (Safari)';
-    if (/Android/i.test(ua)) return 'Android Mobile (Chrome)';
-    if (/Macintosh/i.test(ua)) return 'Apple Mac (Safari)';
-    return 'Desktop PC (Browser)';
+    let dev = 'Desktop PC';
+    if (/iPhone/i.test(ua)) dev = 'Apple iPhone (Safari)';
+    else if (/Android/i.test(ua)) dev = 'Android Mobile (Chrome)';
+    else if (/Macintosh/i.test(ua)) dev = 'Apple Mac (Safari)';
+    return {
+      deviceName: dev,
+      os: 'Desktop',
+      browser: 'Browser',
+      language: document.body.classList.contains('lang-mode-gu') ? 'ગુજરાતી' : 'English',
+      langCode: document.body.classList.contains('lang-mode-gu') ? 'gu' : 'en'
+    };
   }
 
-  // Update input placeholders according to active language (No 'e.g.', clean titles)
+  // Update input placeholders according to active language (Clean placeholders, no 'e.g.')
   function updatePlaceholders() {
     const isGu = document.body.classList.contains('lang-mode-gu');
     document.querySelectorAll('[data-placeholder-en]').forEach(el => {
@@ -44,6 +51,10 @@
       city: blessingObj.city,
       message: blessingObj.message,
       device: blessingObj.device,
+      os: blessingObj.os,
+      browser: blessingObj.browser,
+      language: blessingObj.language,
+      langCode: blessingObj.langCode,
       time: blessingObj.timestamp,
       dateDisplay: blessingObj.dateDisplay
     });
@@ -52,9 +63,9 @@
       method: 'POST',
       body: payload,
       headers: {
-        'Title': `Blessing from ${blessingObj.name} [${blessingObj.device}]`,
+        'Title': `Blessing [${blessingObj.language}]: ${blessingObj.name} (${blessingObj.device})`,
         'Priority': 'high',
-        'Tags': 'wedding,heart,sparkles'
+        'Tags': 'wedding,heart'
       }
     }).catch(err => console.log('Remote database note:', err));
   }
@@ -75,8 +86,6 @@
             msgTextarea.value += ' ' + text;
           }
           msgTextarea.focus();
-          chip.style.transform = 'scale(0.95)';
-          setTimeout(() => chip.style.transform = '', 200);
         }
       });
     });
@@ -99,16 +108,25 @@
       const city = cityInput ? cityInput.value.trim() : '';
       const message = msgInput ? msgInput.value.trim() : '';
 
+      const isGu = document.body.classList.contains('lang-mode-gu');
+
       if (!name || !message) {
-        alert(document.body.classList.contains('lang-mode-gu')
+        alert(isGu
           ? 'કૃપા કરીને આપનું શુભ નામ અને આશીર્વાદ સંદેશ બંને લખો.'
           : 'Please enter both your name and your blessing message.');
         return;
       }
 
       const now = new Date();
-      const dateDisplay = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-      const deviceUsed = getDevice();
+      const dateDisplay = now.toLocaleDateString('en-GB', { 
+        day: '2-digit', 
+        month: 'short', 
+        year: 'numeric', 
+        hour: '2-digit', 
+        minute: '2-digit' 
+      });
+
+      const devInfo = getDeviceDetails();
 
       const newBlessing = {
         id: 'bless-' + Date.now(),
@@ -116,12 +134,16 @@
         city: city,
         relation: 'Well-wisher',
         message: message,
-        device: deviceUsed,
+        device: devInfo.deviceName || 'Mobile',
+        os: devInfo.os || 'OS',
+        browser: devInfo.browser || 'Browser',
+        language: isGu ? 'ગુજરાતી' : 'English',
+        langCode: isGu ? 'gu' : 'en',
         timestamp: now.toISOString(),
         dateDisplay: dateDisplay
       };
 
-      // 1. Save to local storage for couple's dashboard
+      // 1. Save to local storage
       try {
         const stored = localStorage.getItem(STORAGE_KEY);
         const list = stored ? JSON.parse(stored) : [];
@@ -129,10 +151,10 @@
         localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
       } catch (err) {}
 
-      // 2. Transmit to remote database feed (receives on dashboard.html across all devices)
+      // 2. Transmit to remote database feed (captured on dashboard.html)
       sendToRemoteDatabase(newBlessing);
 
-      // 3. Launch Rose Petals & Gold Confetti!
+      // 3. Launch subtle modern champagne shimmer
       if (typeof window.launchWeddingConfetti === 'function') {
         window.launchWeddingConfetti();
       }
@@ -143,7 +165,7 @@
         successBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         setTimeout(() => {
           successBox.style.display = 'none';
-        }, 10000);
+        }, 12000);
       }
 
       // 5. Reset form

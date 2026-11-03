@@ -1,50 +1,51 @@
 /* ==========================================================================
-   ROYAL WEDDING INVITATION LUXURY STYLESHEET (V2 - ENHANCED THEME & FONTS)
+   ROYAL WEDDING INVITATION - DECENT & SMOOTH MODERN PASTEL THEME
    Avani Makwana & Divyang Rathod | 17th January 2027
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&family=Noto+Sans+Gujarati:wght@300;400;500;600;700&family=Noto+Serif+Gujarati:wght@400;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Serif+Gujarati:wght@400;500;600;700;800&family=Noto+Sans+Gujarati:wght@400;500;600&display=swap');
 
 :root {
-  /* Modern Luxury Pastel Wedding Palette */
-  --pastel-rose: #d89fa3;
-  --pastel-rose-light: #fdf2f2;
-  --pastel-rose-deep: #8a3f48;
+  /* Decent & Smooth Modern Light Pastel Palette */
+  --pastel-rose: #d6a4a9;
+  --pastel-rose-light: #fbf4f4;
+  --pastel-rose-deep: #7a3e46;
   
-  --pastel-sage: #9bb7a3;
-  --pastel-sage-light: #edf4ee;
+  --pastel-sage: #8fa896;
+  --pastel-sage-light: #f0f5f2;
   --pastel-sage-deep: #47634f;
   
-  --pastel-peach: #f5cfb8;
+  --pastel-peach: #f3d7c8;
   --pastel-champagne: #caa87a;
-  --pastel-gradient: linear-gradient(135deg, #d89fa3 0%, #f5cfb8 50%, #caa87a 100%);
+  --pastel-gradient: linear-gradient(135deg, #f0cfcb 0%, #fae6da 50%, #dfcaa7 100%);
   
-  --gold-primary: #bfa075;
-  --gold-light: #faecd6;
+  --gold-primary: #bda178;
+  --gold-light: #fbf6ec;
   --gold-dark: #8c6434;
   --gold-gradient: linear-gradient(135deg, #d8b88a 0%, #faecd6 45%, #bfa075 75%, #8c6434 100%);
   
-  --royal-wine: #8a3f48;
-  --royal-wine-light: #a85860;
-  --royal-wine-dark: #582027;
+  --royal-wine: #7a3e46;
+  --royal-wine-light: #94535c;
+  --royal-wine-dark: #4d2127;
   
-  /* Modern Cashmere & Soft Almond Pastel Ivory */
-  --bg-primary: #faf6f2;
-  --bg-secondary: #f4ece4;
-  --bg-card: rgba(255, 255, 255, 0.92);
+  /* Modern Warm Linen Milk & Soft Cashmere */
+  --bg-primary: #faf8f5;
+  --bg-secondary: #f5f0ea;
+  --bg-card: rgba(255, 255, 255, 0.95);
   
-  --text-main: #362927;
-  --text-muted: #786461;
-  --text-gold: #966736;
+  --text-main: #2b2220;
+  --text-muted: #6e5d59;
+  --text-gold: #8a6338;
   
-  --card-border: rgba(216, 159, 163, 0.4);
-  --card-shadow: 0 16px 36px rgba(138, 63, 72, 0.07);
-  --header-bg: rgba(250, 246, 242, 0.95);
+  --card-border: rgba(197, 166, 124, 0.28);
+  --card-shadow: 0 12px 35px rgba(0, 0, 0, 0.04);
+  --header-bg: rgba(250, 248, 245, 0.96);
 
   --font-serif: 'Cormorant Garamond', 'Noto Serif Gujarati', serif;
-  --font-script: 'Alex Brush', cursive;
+  --font-display: 'Playfair Display', 'Cormorant Garamond', serif;
+  --font-script: 'Playfair Display', 'Cormorant Garamond', serif; /* Clean non-curvy modern serif */
   --font-royal: 'Cinzel', serif;
-  --font-sans: 'Montserrat', 'Noto Sans Gujarati', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', 'Noto Sans Gujarati', sans-serif;
   --font-gujarati: 'Noto Serif Gujarati', serif;
 }
 
@@ -87,14 +88,14 @@ body {
   position: relative;
 }
 
-/* Subtle Royal Damask Watermark */
+/* Subtle Smooth Ambient Lighting */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: 
-    radial-gradient(circle at 15% 15%, rgba(197, 146, 44, 0.05) 0%, transparent 45%),
-    radial-gradient(circle at 85% 85%, rgba(92, 17, 30, 0.05) 0%, transparent 45%);
+  background: 
+    radial-gradient(ellipse 65% 45% at 15% 10%, rgba(243, 215, 200, 0.35) 0%, transparent 70%),
+    radial-gradient(ellipse 65% 45% at 85% 90%, rgba(220, 230, 223, 0.35) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -300,12 +301,13 @@ body.dark-mode .shree-ganesh-text {
 }
 
 .couple-names-grand {
-  font-family: var(--font-script);
-  font-size: 82px;
+  font-family: var(--font-display);
+  font-size: 68px;
+  font-weight: 600;
   color: var(--royal-wine);
-  line-height: 1.1;
-  margin-bottom: 8px;
-  text-shadow: 0 2px 12px rgba(92, 17, 30, 0.12);
+  line-height: 1.15;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
 }
 
 body.dark-mode .couple-names-grand {

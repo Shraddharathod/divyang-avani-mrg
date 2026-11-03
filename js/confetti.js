@@ -1,10 +1,13 @@
 /* ===================================================
-   LUXURY CONFETTI & ROSE PETAL CANNON
+   DECENT & SMOOTH CHAMPAGNE & PEARL SHIMMER
+   - Minimalist, smooth, luxury micro-shimmer
+   - No cheap flower petals or oversized shapes
+   - Soft pearlescent gold, blush & champagne dust
    =================================================== */
 
 window.launchWeddingConfetti = function() {
   const canvas = document.createElement('canvas');
-  canvas.id = 'wedding-confetti-canvas';
+  canvas.id = 'wedding-shimmer-canvas';
   canvas.style.position = 'fixed';
   canvas.style.top = '0';
   canvas.style.left = '0';
@@ -18,26 +21,24 @@ window.launchWeddingConfetti = function() {
   let width = (canvas.width = window.innerWidth);
   let height = (canvas.height = window.innerHeight);
 
+  // Elegant luxury pastel shimmer tones (Champagne, Pearl, Soft Rose Gold, Ivory)
   const colors = [
-    '#ffd700', '#fff2a1', '#d4af37', '#e11d48', '#fb7185',
-    '#ff4d6d', '#f72585', '#b38728', '#ffffff'
+    '#e8cca4', '#f5ebd7', '#d9b48c', '#e2beb4', '#ffffff', '#faecd6', '#c9a87c'
   ];
 
   const particles = [];
-  const particleCount = 120;
+  const particleCount = 75;
 
   for (let i = 0; i < particleCount; i++) {
     particles.push({
-      x: width / 2 + (Math.random() * 200 - 100),
-      y: height * 0.5 + (Math.random() * 100 - 50),
-      vx: (Math.random() - 0.5) * 14,
-      vy: (Math.random() * -12) - 6,
-      size: Math.random() * 8 + 6,
+      x: width / 2 + (Math.random() * 260 - 130),
+      y: height * 0.45 + (Math.random() * 80 - 40),
+      vx: (Math.random() - 0.5) * 8,
+      vy: (Math.random() * -7) - 3,
+      size: Math.random() * 3.5 + 2,
       color: colors[Math.floor(Math.random() * colors.length)],
-      rotation: Math.random() * 360,
-      rotationSpeed: (Math.random() - 0.5) * 10,
       opacity: 1,
-      shape: Math.random() > 0.4 ? 'petal' : 'rect'
+      fadeRate: Math.random() * 0.008 + 0.006
     });
   }
 
@@ -51,40 +52,33 @@ window.launchWeddingConfetti = function() {
     particles.forEach(p => {
       p.x += p.vx;
       p.y += p.vy;
-      p.vy += 0.28; // Gravity
-      p.vx *= 0.985; // Air drag
-      p.rotation += p.rotationSpeed;
+      p.vy += 0.16; // Gentle gravity
+      p.vx *= 0.985;
 
-      if (elapsed > 2500) {
-        p.opacity -= 0.015;
+      if (elapsed > 1800) {
+        p.opacity -= p.fadeRate;
       }
 
-      ctx.save();
-      ctx.translate(p.x, p.y);
-      ctx.rotate((p.rotation * Math.PI) / 180);
-      ctx.globalAlpha = Math.max(0, p.opacity);
-      ctx.fillStyle = p.color;
-
-      if (p.shape === 'petal') {
-        // Rose petal curve
+      if (p.opacity > 0) {
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, p.opacity);
+        ctx.fillStyle = p.color;
         ctx.beginPath();
-        ctx.ellipse(0, 0, p.size, p.size * 1.5, Math.PI / 4, 0, 2 * Math.PI);
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
-      } else {
-        // Metallic foil square/confetti
-        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.7);
+        ctx.restore();
       }
-
-      ctx.restore();
     });
 
-    if (elapsed < 4500) {
+    if (elapsed < 3800 && particles.some(p => p.opacity > 0)) {
       animationFrame = requestAnimationFrame(render);
     } else {
       cancelAnimationFrame(animationFrame);
-      canvas.remove();
+      if (canvas.parentNode) {
+        canvas.parentNode.removeChild(canvas);
+      }
     }
   }
 
-  animationFrame = requestAnimationFrame(render);
+  render();
 };

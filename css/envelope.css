@@ -136,10 +136,12 @@
 }
 
 .card-slip .slip-names {
-  font-family: 'Alex Brush', cursive;
-  font-size: 40px;
-  color: #5c111e;
-  line-height: 1.1;
+  font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #7a3e46;
+  letter-spacing: 1.5px;
+  line-height: 1.15;
   margin-bottom: 4px;
 }
 
