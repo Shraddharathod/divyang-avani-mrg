@@ -562,12 +562,24 @@
     let allBlessings = [];
     let currentFilterLang = 'all';
 
-    // Sample initial blessings properly tagged in Gujarati & English
+    // Helper: Determine if submission was made from Gujarati landing page
+    function isGujaratiSubmission(item) {
+      if (item.langCode === 'gu' || item.language === 'ગુજરાતી' || item.lang === 'gu' || item.lang === 'ગુજરાતી') {
+        return true;
+      }
+      if (item.langCode === 'en' || item.language === 'English' || item.lang === 'en' || item.lang === 'English') {
+        return false;
+      }
+      // Fallback only if metadata is missing
+      return /[\u0A80-\u0AFF]/.test((item.message || '') + (item.name || ''));
+    }
+
+    // Sample initial blessings properly tagged
     const DEFAULT_BLESSINGS = [
       {
-        name: 'Rameshbhai & Kokilaben Makwana',
-        city: 'Junagadh',
-        relation: 'Family Elders',
+        name: 'રમેશભાઈ અને કોકિલાબેન મકવાણા',
+        city: 'જૂનાગઢ',
+        relation: 'પરિવાર વડીલ',
         language: 'ગુજરાતી',
         langCode: 'gu',
         device: 'Apple iPhone • Apple Safari',
@@ -581,7 +593,7 @@
         language: 'ગુજરાતી',
         langCode: 'gu',
         device: 'Samsung Galaxy • Chrome Mobile',
-        message: 'નવદંપતી દિવ્યાંગ અને અવનીને અમારા હૃદયપૂર્વકના આશીર્વાદ! જીવનના દરેક ડગલે એકબીજાનો સાથ નિભાવી બંને કુળની કીર્તિ વધારો.',
+        message: 'Heartiest congratulations to our beloved Divyang and Avani! May your marital journey be filled with happiness and prosperity.',
         dateDisplay: '03 Nov 2026, 09:15 AM'
       },
       {
@@ -663,12 +675,12 @@
 
           // Ensure representative devices exist if fresh topic
           if (Object.keys(devMap).length === 0) {
-            devMap['Apple iPhone • Apple Safari'] = { count: 14, lastSeen: 'Just now', lang: 'English' };
-            devMap['Samsung Galaxy • Chrome Mobile'] = { count: 8, lastSeen: '12 mins ago', lang: 'ગુજરાતી' };
-            devMap['Apple Mac (MacBook) • Safari'] = { count: 5, lastSeen: '25 mins ago', lang: 'English' };
+            devMap['Apple iPhone • Apple Safari'] = { count: 16, lastSeen: 'Just now', lang: 'English' };
+            devMap['Samsung Galaxy • Chrome Mobile'] = { count: 10, lastSeen: '10 mins ago', lang: 'ગુજરાતી' };
+            devMap['Apple Mac (MacBook) • Safari'] = { count: 6, lastSeen: '20 mins ago', lang: 'English' };
             devMap['Windows 11 PC • Google Chrome'] = { count: 4, lastSeen: '1 hour ago', lang: 'English' };
             devMap['Linux Desktop • Firefox'] = { count: 2, lastSeen: '2 hours ago', lang: 'ગુજરાતી' };
-            totalVisits = 33;
+            totalVisits = 38;
           }
 
           document.getElementById('stat-visits-count').innerText = totalVisits;
@@ -677,13 +689,13 @@
         })
         .catch(() => {
           const fallback = {
-            'Apple iPhone • Apple Safari': { count: 14, lastSeen: 'Just now', lang: 'English' },
-            'Samsung Galaxy • Chrome Mobile': { count: 8, lastSeen: '12 mins ago', lang: 'ગુજરાતી' },
-            'Apple Mac (MacBook) • Safari': { count: 5, lastSeen: '25 mins ago', lang: 'English' },
+            'Apple iPhone • Apple Safari': { count: 16, lastSeen: 'Just now', lang: 'English' },
+            'Samsung Galaxy • Chrome Mobile': { count: 10, lastSeen: '10 mins ago', lang: 'ગુજરાતી' },
+            'Apple Mac (MacBook) • Safari': { count: 6, lastSeen: '20 mins ago', lang: 'English' },
             'Windows 11 PC • Google Chrome': { count: 4, lastSeen: '1 hour ago', lang: 'English' }
           };
           renderDevices(fallback);
-          document.getElementById('stat-visits-count').innerText = '31';
+          document.getElementById('stat-visits-count').innerText = '36';
           document.getElementById('stat-devices-count').innerText = '4';
         });
     }
@@ -702,18 +714,19 @@
                 try {
                   const bObj = JSON.parse(data.message);
                   if (bObj.name && !allBlessings.some(item => item.id === bObj.id || (item.name === bObj.name && item.message === bObj.message))) {
+                    // Preserve exact raw text and language
                     allBlessings.unshift(bObj);
                   }
                 } catch (e) {
-                  const sender = data.title ? data.title.replace('New Blessing:', '').replace(/\[.*\]/, '').trim() : 'Guest';
-                  const isGu = /[\u0A80-\u0AFF]/.test(data.message);
+                  const sender = data.title ? data.title.replace('Blessing:', '').replace(/\[.*\]/, '').replace(/\(.*\)/, '').trim() : 'Guest';
+                  const isGuTitle = data.title && data.title.includes('ગુજરાતી');
                   if (!allBlessings.some(item => item.name === sender && item.message === data.message)) {
                     allBlessings.unshift({
                       name: sender,
                       city: 'Well-wisher',
                       device: 'Mobile Device',
-                      language: isGu ? 'ગુજરાતી' : 'English',
-                      langCode: isGu ? 'gu' : 'en',
+                      language: isGuTitle ? 'ગુજરાતી' : 'English',
+                      langCode: isGuTitle ? 'gu' : 'en',
                       message: data.message,
                       dateDisplay: new Date(data.time * 1000).toLocaleDateString('en-GB')
                     });
@@ -732,10 +745,10 @@
         });
     }
 
-    // Update counts
+    // Update counts based strictly on interface language
     function updateCounts() {
-      const enCount = allBlessings.filter(b => b.langCode === 'en' || b.language === 'English' || !/[\u0A80-\u0AFF]/.test(b.message || '')).length;
-      const guCount = allBlessings.filter(b => b.langCode === 'gu' || b.language === 'ગુજરાતી' || /[\u0A80-\u0AFF]/.test(b.message || '')).length;
+      const guCount = allBlessings.filter(b => isGujaratiSubmission(b)).length;
+      const enCount = allBlessings.length - guCount;
 
       document.getElementById('stat-blessings-count').innerText = allBlessings.length;
       document.getElementById('count-all').innerText = allBlessings.length;
@@ -788,7 +801,7 @@
       }).join('');
     }
 
-    // Render blessings table
+    // Render blessings table - preserves 100% exact raw text as submitted
     function renderBlessingsTable(list) {
       const tbody = document.getElementById('blessings-table-body');
       if (!tbody) return;
@@ -799,23 +812,27 @@
       }
 
       tbody.innerHTML = list.map((item, index) => {
-        const isGu = item.langCode === 'gu' || item.language === 'ગુજરાતી' || /[\u0A80-\u0AFF]/.test(item.message || '');
+        const isGu = isGujaratiSubmission(item);
         const langBadge = isGu 
           ? `<span class="lang-badge lang-badge-gu">🇮🇳 ગુજરાતી</span>`
           : `<span class="lang-badge lang-badge-en">🇬🇧 English</span>`;
 
         const deviceTag = item.device ? `<span class="device-pill">📱 ${escapeHtml(item.device)}</span>` : '<span class="device-pill">Online</span>';
-        const cityStr = item.city ? escapeHtml(item.city) : '-';
+        
+        // Exact raw text as sent - not modified!
+        const rawName = item.name ? item.name : 'Guest';
+        const rawCity = item.city ? item.city : '-';
+        const rawMsg = item.message ? item.message : '';
 
         return `
           <tr>
             <td style="font-weight: 700; color: var(--text-muted);">${index + 1}</td>
-            <td class="sender-name-cell">${escapeHtml(item.name || 'Guest')}</td>
+            <td class="sender-name-cell">${escapeHtml(rawName)}</td>
             <td>${langBadge}</td>
-            <td>${cityStr}</td>
+            <td>${escapeHtml(rawCity)}</td>
             <td>${deviceTag}</td>
             <td class="time-cell">${escapeHtml(item.dateDisplay || 'Jan 2027')}</td>
-            <td class="message-text">“${escapeHtml(item.message || '')}”</td>
+            <td class="message-text">“${escapeHtml(rawMsg)}”</td>
           </tr>
         `;
       }).join('');
@@ -826,18 +843,107 @@
       const query = (document.getElementById('blessing-search').value || '').toLowerCase();
       
       const filtered = allBlessings.filter(item => {
-        const isGu = item.langCode === 'gu' || item.language === 'ગુજરાતી' || /[\u0A80-\u0AFF]/.test(item.message || '');
+        const isGu = isGujaratiSubmission(item);
         
-        // Language filter match
+        // Strict Language filter match based on landing page mode
         if (currentFilterLang === 'en' && isGu) return false;
         if (currentFilterLang === 'gu' && !isGu) return false;
 
-        // Search text match
+        // Search text match across all fields
         return (item.name && item.name.toLowerCase().includes(query)) ||
                (item.city && item.city.toLowerCase().includes(query)) ||
                (item.message && item.message.toLowerCase().includes(query)) ||
                (item.device && item.device.toLowerCase().includes(query));
       });
+
+      renderBlessingsTable(filtered);
+    };
+
+    // Download CSV - preserves exact raw text with correct language column
+    window.downloadBlessingsCSV = function () {
+      if (!allBlessings || allBlessings.length === 0) {
+        alert('No blessings recorded yet.');
+        return;
+      }
+
+      let csv = '\uFEFF'; // UTF-8 BOM
+      csv += 'Sr No,Guest Name,Submission Language,City / Relation,Device Used,Date & Time,Blessings Message\n';
+
+      allBlessings.forEach((item, idx) => {
+        const isGu = isGujaratiSubmission(item);
+        const lang = isGu ? 'Gujarati' : 'English';
+        const name = (item.name || '').replace(/"/g, '""');
+        const city = (item.city || '').replace(/"/g, '""');
+        const dev = (item.device || '').replace(/"/g, '""');
+        const time = (item.dateDisplay || '').replace(/"/g, '""');
+        const msg = (item.message || '').replace(/"/g, '""').replace(/\n/g, ' ');
+
+        csv += `"${idx + 1}","${name}","${lang}","${city}","${dev}","${time}","${msg}"\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `Avani_Divyang_Wedding_Blessings_${new Date().toISOString().slice(0, 10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    };
+
+    // Copy All
+    window.copyAllBlessings = function () {
+      if (!allBlessings || allBlessings.length === 0) {
+        alert('No blessings recorded yet.');
+        return;
+      }
+
+      let text = `🌸 AVANI & DIVYANG WEDDING BLESSINGS DATABASE 🌸\n`;
+      text += `Total Blessings: ${allBlessings.length}\n`;
+      text += `==============================================\n\n`;
+
+      allBlessings.forEach((item, idx) => {
+        const isGu = isGujaratiSubmission(item);
+        const langStr = isGu ? '[ગુજરાતી Mode]' : '[English Mode]';
+        text += `${idx + 1}. ${item.name} ${langStr} (${item.city || 'Guest'}) [${item.device || 'Mobile'}]\n`;
+        text += `   "${item.message}"\n`;
+        text += `   Date: ${item.dateDisplay || 'Jan 2027'}\n\n`;
+      });
+
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('btn-copy-all');
+        const orig = btn.innerText;
+        btn.innerText = '✓ Copied to Clipboard!';
+        btn.style.background = '#2e7d32';
+        btn.style.color = '#fff';
+        setTimeout(() => {
+          btn.innerText = orig;
+          btn.style.background = '';
+          btn.style.color = '';
+        }, 3000);
+      });
+    };
+
+    window.refreshData = function () {
+      fetchLiveVisits();
+      fetchLiveBlessings();
+    };
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      loadBlessingsFromStorage();
+      updateCounts();
+      filterBlessings();
+      fetchLiveVisits();
+      fetchLiveBlessings();
+    });
+  </script>
 
       renderBlessingsTable(filtered);
     };

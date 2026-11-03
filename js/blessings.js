@@ -78,7 +78,11 @@
 
     chips.forEach(chip => {
       chip.addEventListener('click', () => {
-        const text = chip.getAttribute('data-text');
+        const isGu = document.body.classList.contains('lang-mode-gu') || localStorage.getItem('wedding_lang') === 'gu';
+        const text = isGu 
+          ? (chip.getAttribute('data-text-gu') || chip.getAttribute('data-text'))
+          : (chip.getAttribute('data-text-en') || chip.getAttribute('data-text'));
+
         if (text) {
           if (msgTextarea.value.trim() === '') {
             msgTextarea.value = text;
@@ -104,13 +108,16 @@
       const cityInput = document.getElementById('blessing-city');
       const msgInput = document.getElementById('blessing-message');
 
-      const name = nameInput ? nameInput.value.trim() : '';
-      const city = cityInput ? cityInput.value.trim() : '';
-      const message = msgInput ? msgInput.value.trim() : '';
+      // Preserve exact raw text entered by user without any translation or modification
+      const rawName = nameInput ? nameInput.value.trim() : '';
+      const rawCity = cityInput ? cityInput.value.trim() : '';
+      const rawMessage = msgInput ? msgInput.value.trim() : '';
 
-      const isGu = document.body.classList.contains('lang-mode-gu');
+      const isGu = document.body.classList.contains('lang-mode-gu') || localStorage.getItem('wedding_lang') === 'gu';
+      const activeLanguage = isGu ? 'ગુજરાતી' : 'English';
+      const activeLangCode = isGu ? 'gu' : 'en';
 
-      if (!name || !message) {
+      if (!rawName || !rawMessage) {
         alert(isGu
           ? 'કૃપા કરીને આપનું શુભ નામ અને આશીર્વાદ સંદેશ બંને લખો.'
           : 'Please enter both your name and your blessing message.');
@@ -128,17 +135,18 @@
 
       const devInfo = getDeviceDetails();
 
+      // Structure object: language tracks landing page mode; name/city/message preserve exact input
       const newBlessing = {
         id: 'bless-' + Date.now(),
-        name: name,
-        city: city,
+        name: rawName,
+        city: rawCity,
         relation: 'Well-wisher',
-        message: message,
+        message: rawMessage,
         device: devInfo.deviceName || 'Mobile',
         os: devInfo.os || 'OS',
         browser: devInfo.browser || 'Browser',
-        language: isGu ? 'ગુજરાતી' : 'English',
-        langCode: isGu ? 'gu' : 'en',
+        language: activeLanguage,
+        langCode: activeLangCode,
         timestamp: now.toISOString(),
         dateDisplay: dateDisplay
       };
