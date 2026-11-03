@@ -31,36 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
       : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
   }
 
-  // 3. BACKGROUND MUSIC CONTROLLER
-  const audio = document.getElementById('wedding-audio');
-  const audioToggle = document.getElementById('audio-toggle');
-
-  if (audio && audioToggle) {
-    audioToggle.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play().then(() => {
-          audioToggle.classList.remove('paused');
-        }).catch(e => console.error(e));
-      } else {
-        audio.pause();
-        audioToggle.classList.add('paused');
-      }
-    });
-
-    const userUnlockAudio = () => {
-      if (audio.paused && !audioToggle.dataset.userPaused) {
-        audio.play().then(() => {
-          audioToggle.classList.remove('paused');
-        }).catch(() => {});
-      }
-      window.removeEventListener('click', userUnlockAudio);
-      window.removeEventListener('touchstart', userUnlockAudio);
-    };
-    window.addEventListener('click', userUnlockAudio, { once: true });
-    window.addEventListener('touchstart', userUnlockAudio, { once: true });
-  }
-
-  // 4. ITINERARY CAROUSEL CONTROLS
+  // 3. ITINERARY CAROUSEL CONTROLS
   const track = document.getElementById('itinerary-track');
   const prevBtn = document.getElementById('carousel-prev');
   const nextBtn = document.getElementById('carousel-next');

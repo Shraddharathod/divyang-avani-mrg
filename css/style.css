@@ -217,61 +217,6 @@ body.dark-mode .nav-monogram {
   color: var(--gold-primary);
 }
 
-/* Floating Audio Toggle (Bottom Right) */
-.audio-toggle-float {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 9999;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--pastel-rose), var(--royal-wine));
-  border: 2px solid var(--pastel-champagne);
-  color: #fff;
-  cursor: pointer;
-  box-shadow: 0 8px 25px rgba(138, 63, 72, 0.35);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.audio-toggle-float:hover {
-  transform: scale(1.12);
-  box-shadow: 0 10px 30px rgba(197, 146, 44, 0.6);
-}
-
-.audio-waves {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  height: 18px;
-}
-
-.audio-wave-bar {
-  width: 3px;
-  height: 100%;
-  background: #fff;
-  border-radius: 2px;
-  animation: waveBar 1.2s infinite ease-in-out;
-}
-
-.audio-toggle-float.paused .audio-wave-bar {
-  animation-play-state: paused;
-  height: 4px;
-}
-
-.audio-wave-bar:nth-child(1) { animation-delay: 0.1s; height: 60%; }
-.audio-wave-bar:nth-child(2) { animation-delay: 0.3s; height: 100%; }
-.audio-wave-bar:nth-child(3) { animation-delay: 0.2s; height: 80%; }
-.audio-wave-bar:nth-child(4) { animation-delay: 0.4s; height: 40%; }
-
-@keyframes waveBar {
-  0%, 100% { transform: scaleY(0.3); }
-  50% { transform: scaleY(1); }
-}
-
 /* ==========================================================================
    HERO & AUSPICIOUS INVOCATION SECTION
    ========================================================================== */
